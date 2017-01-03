@@ -1,0 +1,1 @@
+Metacello new  configuration:'Seaside3';  repository: 'http://www.smalltalkhub.com/mc/Seaside/MetacelloConfigurations/main';  version: #stable;  load
