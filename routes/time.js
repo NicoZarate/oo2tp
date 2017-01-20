@@ -3,7 +3,7 @@ var router = express.Router();
 
 /* GET high. */
 router.get('/', function(req, res, next) {
-  res.render('time', { title: 'ejemplo sincronizado' });
+  res.render('time', { title: 'Timelines Synchronized' });
 });
 
 module.exports = router;
