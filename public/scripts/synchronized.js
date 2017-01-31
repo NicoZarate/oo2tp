@@ -1,3 +1,6 @@
+ //El código para cargar la biblioteca apropiada es 
+ //parte del script jsapi incluido y se llama cuando invoca el método google.load ().
+
  google.load("visualization", "1");
 
         // Set callback to run when API is loaded
