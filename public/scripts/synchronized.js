@@ -44,9 +44,13 @@
             // Instantiate our timeline object.
             vis1 = new links.Timeline(document.getElementById('timeline1'));
 
+            // para no usar GOOGLE!!!
 
+            
+            links.events.addListener(vis1, 'rangechanged', onrangechange1);
 
-            google.visualization.events.addListener(vis1, 'rangechange', onrangechange1);
+            //google.visualization.events.addListener(vis1, 'rangechange', onrangechange1);
+            
             google.visualization.events.addListener(vis1, 'timechange', timechange1);
 
             // Draw our timeline with the created data and options
