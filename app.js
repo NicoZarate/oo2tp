@@ -50,14 +50,7 @@ app.use(express.static(path.join(__dirname, 'node_modules')));
 
 
 
-
-
-var fs = require('fs');
-var contenido = fs.readFileSync("datos.json");
-var jsonData = JSON.parse(contenido);
-
-
-app.use('/', time, jsonData);
+app.use('/', time);
 
 
 

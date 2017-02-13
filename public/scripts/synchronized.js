@@ -109,6 +109,7 @@
 
             //jsonData = require('./datos.json');
             //console.log("ola ke tal");
+
             var data2 = new google.visualization.DataTable(jsonData);
 >>>>>>> bc77992525cdc4251369705d680d14de05c370b3
 
@@ -122,6 +123,14 @@
 
             // Instantiate our timeline object.
             vis2 = new links.Timeline(document.getElementById('timeline2'), options2);
+
+            //data2.addColumn('datetime', 'start');
+            //data2.addColumn('datetime', 'end');
+           // data2.addColumn('string', 'content');
+           // datos= [
+           //     [new Date(2017,01,19), new Date(2017,01,30), 'Traject C'],
+             //   [new Date(2017,01,19), new Date(2017,01,31), 'Traject D']
+            //];
 
             google.visualization.events.addListener(vis2, 'rangechange', onrangechange2);
             google.visualization.events.addListener(vis2, 'timechange', timechange2);
