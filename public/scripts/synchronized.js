@@ -55,7 +55,7 @@
 
             // para no usar GOOGLE!!!
 
-            
+
             links.events.addListener(vis1, 'rangechanged', onrangechange1);
 
             //google.visualization.events.addListener(vis1, 'rangechange', onrangechange1);
@@ -80,6 +80,7 @@
              //alert(algo.name[0]);
             //alert(parseInt(myObj.anio));
             // Create and populate a data table.
+<<<<<<< HEAD
             var data2 = new google.visualization.DataTable();
             data2.addColumn('datetime', 'start');
             data2.addColumn('datetime', 'end');
@@ -90,6 +91,26 @@
                 new Date(parseInt(myObj.date[1].anio),parseInt(myObj.date[1].mes),parseInt(myObj.date[1].dia)),json["name"] ],
                 [new Date(2017,01,17), json["date"], 'Traject D']
             ]);
+=======
+            //var data2 = new google.visualization.DataTable();
+            //data2.addColumn('datetime', 'start');
+            //data2.addColumn('datetime', 'end');
+           // data2.addColumn('string', 'content');
+           // datos= [
+           //     [new Date(2017,01,19), new Date(2017,01,30), 'Traject C'],
+             //   [new Date(2017,01,19), new Date(2017,01,31), 'Traject D']
+            //];
+            //data2.addRows(datos);
+
+
+            //var fs = require('fs');
+            //var contenido = fs.readFileSync("datos.json");
+            //var jsonData = JSON.parse(contenido);
+
+            //jsonData = require('./datos.json');
+            //console.log("ola ke tal");
+            var data2 = new google.visualization.DataTable(jsonData);
+>>>>>>> bc77992525cdc4251369705d680d14de05c370b3
 
             // specify options
             var options2 = {
@@ -104,11 +125,10 @@
 
             google.visualization.events.addListener(vis2, 'rangechange', onrangechange2);
             google.visualization.events.addListener(vis2, 'timechange', timechange2);
-
-
             // Draw our timeline with the created data and options
             vis2.draw(data2);
 
+            
             onrangechange1();  // to set the range equal initially
         }
 
