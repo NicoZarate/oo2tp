@@ -10,7 +10,7 @@
         var vis1;
         var vis2;
         var json;
-        $.getJSON("/data.json", function(datos) {
+        $.getJSON("/datos.json", function(datos) {
                    json = datos;
                 
         });
@@ -69,29 +69,11 @@
         }
 
         function createTimeline2() {
-            var myJSON = '{ "name":"Tarjeta" , "date": [ '+
-            ' {"anio": "2017" , "mes": "01","dia": "24" },'+
-            '{"anio": "2017" , "mes": "01","dia": "30" }]}';
-            var aux = new Date(2017,01,16);
-
-            //alert(aux);
-            var myObj = JSON.parse(myJSON);
-            //var algo = JSON.parse(data);
-             //alert(algo.name[0]);
-            //alert(parseInt(myObj.anio));
+       
             // Create and populate a data table.
-<<<<<<< HEAD
-            var data2 = new google.visualization.DataTable();
-            data2.addColumn('datetime', 'start');
-            data2.addColumn('datetime', 'end');
-            data2.addColumn('string', 'content');
 
-            data2.addRows([
-                [aux, 
-                new Date(parseInt(myObj.date[1].anio),parseInt(myObj.date[1].mes),parseInt(myObj.date[1].dia)),json["name"] ],
-                [new Date(2017,01,17), json["date"], 'Traject D']
-            ]);
-=======
+        
+            
             //var data2 = new google.visualization.DataTable();
             //data2.addColumn('datetime', 'start');
             //data2.addColumn('datetime', 'end');
@@ -111,7 +93,7 @@
             //console.log("ola ke tal");
 
             var data2 = new google.visualization.DataTable(jsonData);
->>>>>>> bc77992525cdc4251369705d680d14de05c370b3
+
 
             // specify options
             var options2 = {
