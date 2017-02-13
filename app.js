@@ -8,6 +8,29 @@ var bodyParser = require('body-parser');
 
 
 var time = require('./routes/time');
+var intento = require('./routes/intento');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 var app = express();
 
@@ -26,7 +49,22 @@ app.use(express.static(path.join(__dirname, 'node_modules')));
 
 
 
-app.use('/', time);
+
+
+var fs = require('fs');
+var contenido = fs.readFileSync("datos.json");
+var jsonData = JSON.parse(contenido);
+
+
+app.use('/', time, jsonData);
+
+
+
+
+
+
+
+app.use('/intento', intento);
 
 
 // catch 404 and forward to error handler

@@ -46,7 +46,7 @@
 
             // para no usar GOOGLE!!!
 
-            
+
             links.events.addListener(vis1, 'rangechanged', onrangechange1);
 
             //google.visualization.events.addListener(vis1, 'rangechange', onrangechange1);
@@ -61,15 +61,24 @@
 
         function createTimeline2() {
             // Create and populate a data table.
-            var data2 = new google.visualization.DataTable();
-            data2.addColumn('datetime', 'start');
-            data2.addColumn('datetime', 'end');
-            data2.addColumn('string', 'content');
+            //var data2 = new google.visualization.DataTable();
+            //data2.addColumn('datetime', 'start');
+            //data2.addColumn('datetime', 'end');
+           // data2.addColumn('string', 'content');
+           // datos= [
+           //     [new Date(2017,01,19), new Date(2017,01,30), 'Traject C'],
+             //   [new Date(2017,01,19), new Date(2017,01,31), 'Traject D']
+            //];
+            //data2.addRows(datos);
 
-            data2.addRows([
-                [new Date(2017,01,19), new Date(2017,01,30), 'Traject C'],
-                [new Date(2017,01,19), new Date(2017,01,31), 'Traject D']
-            ]);
+
+            //var fs = require('fs');
+            //var contenido = fs.readFileSync("datos.json");
+            //var jsonData = JSON.parse(contenido);
+
+            //jsonData = require('./datos.json');
+            //console.log("ola ke tal");
+            var data2 = new google.visualization.DataTable(jsonData);
 
             // specify options
             var options2 = {
@@ -84,11 +93,10 @@
 
             google.visualization.events.addListener(vis2, 'rangechange', onrangechange2);
             google.visualization.events.addListener(vis2, 'timechange', timechange2);
-
-
             // Draw our timeline with the created data and options
             vis2.draw(data2);
 
+            
             onrangechange1();  // to set the range equal initially
         }
 
