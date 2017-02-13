@@ -98,7 +98,9 @@
               async: false
               }).responseText;
 
-            var data2 = new google.visualization.DataTable(jsonData);
+
+var evalledData = eval("("+jsonData+")");
+            var data2 = new google.visualization.DataTable(evalledData);
 
 
             // specify options
