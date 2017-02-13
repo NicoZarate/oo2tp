@@ -1,6 +1,7 @@
  //El código para cargar la biblioteca apropiada es 
  //parte del script jsapi incluido y se llama cuando invoca el método google.load ().
-
+ 
+ //var content = fs.readFileSync("./data.json");
  google.load("visualization", "1");
 
         // Set callback to run when API is loaded
@@ -8,8 +9,16 @@
 
         var vis1;
         var vis2;
+        var json;
+        $.getJSON("/data.json", function(datos) {
+                   json = datos;
+                
+        });
+
+        
 
         function createTimeline1() {
+
             // Create and populate a data table.
             var data1 = new google.visualization.DataTable();
             data1.addColumn('datetime', 'start');
@@ -60,6 +69,16 @@
         }
 
         function createTimeline2() {
+            var myJSON = '{ "name":"Tarjeta" , "date": [ '+
+            ' {"anio": "2017" , "mes": "01","dia": "24" },'+
+            '{"anio": "2017" , "mes": "01","dia": "30" }]}';
+            var aux = new Date(2017,01,16);
+
+            //alert(aux);
+            var myObj = JSON.parse(myJSON);
+            //var algo = JSON.parse(data);
+             //alert(algo.name[0]);
+            //alert(parseInt(myObj.anio));
             // Create and populate a data table.
             var data2 = new google.visualization.DataTable();
             data2.addColumn('datetime', 'start');
@@ -67,8 +86,9 @@
             data2.addColumn('string', 'content');
 
             data2.addRows([
-                [new Date(2017,01,19), new Date(2017,01,30), 'Traject C'],
-                [new Date(2017,01,19), new Date(2017,01,31), 'Traject D']
+                [aux, 
+                new Date(parseInt(myObj.date[1].anio),parseInt(myObj.date[1].mes),parseInt(myObj.date[1].dia)),json["name"] ],
+                [new Date(2017,01,17), json["date"], 'Traject D']
             ]);
 
             // specify options
