@@ -92,6 +92,12 @@
             //jsonData = require('./datos.json');
             //console.log("ola ke tal");
 
+            var jsonData = $.ajax({
+              url: "./datos.json",
+              dataType: "json",
+              async: false
+              }).responseText;
+
             var data2 = new google.visualization.DataTable(jsonData);
 
 
