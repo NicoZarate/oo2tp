@@ -10,7 +10,7 @@ google.setOnLoadCallback(drawVisualization);
 var vis1;
 var vis2;
 var json;
-        
+
 
 function createTimeline1() {
 
@@ -112,3 +112,32 @@ function timechange2() {
     var time = vis2.getCustomTime();
     vis1.setCustomTime(time);
 }
+
+function saveData1() {
+var data = data1.getData({
+  type: {
+    start: 'ISODate',
+    end: 'ISODate'
+  }
+});
+
+function saveData2() {
+var data = data2.getData({
+  type: {
+    start: 'ISODate',
+    end: 'ISODate'
+  }
+});
+
+
+
+// serialize the data and put it in the textarea
+txtData.value = JSON.stringify(data, null, 2);
+}
+
+
+
+
+
+save1.onclick = saveData1;
+save2.onclick = saveData2;
