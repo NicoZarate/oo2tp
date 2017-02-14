@@ -1,6 +1,6 @@
  //El código para cargar la biblioteca apropiada es 
  //parte del script jsapi incluido y se llama cuando invoca el método google.load ().
- 
+
  //var content = fs.readFileSync("./data.json");
  google.load("visualization", "1");
 
@@ -10,8 +10,14 @@ google.setOnLoadCallback(drawVisualization);
 var vis1;
 var vis2;
 var json;
-var save1 = document.getElementById('save1');
-var save2 = document.getElementById('save2');
+
+
+    var bsave1 = document.getElementById('save1');
+    var bsave2 = document.getElementById('save2');
+
+
+var data1;
+var data2;
 
 function createTimeline1() {
 
@@ -25,7 +31,7 @@ function createTimeline1() {
 
 
     var evalledData = eval("("+jsonData+")");
-    var data1 = new google.visualization.DataTable(evalledData);
+    data1 = new google.visualization.DataTable(evalledData);
 
 
     // specify options
@@ -64,7 +70,7 @@ function createTimeline2() {
 
 
     var evalledData = eval("("+jsonData2+")");
-    var data2 = new google.visualization.DataTable(evalledData);
+    data2 = new google.visualization.DataTable(evalledData);
 
 
     // specify options
@@ -115,30 +121,32 @@ function timechange2() {
 }
 
 function saveData1() {
-    var datos1 = data1.getData({
-      type: {
-        start: 'ISODate',
-        end: 'ISODate'
-      }
+    var datos1 = data1.toJSON();
 
-    });
-
-    $.ajax({
+/*    $.ajax({
       type: "POST",
-      url: "../../app.js",
+      url: "http://localhost:3000/json",
       data: {datos1}
     }).done(function(msg) {
       alert("Data Saved: " + msg);
     });
+
+ */
+
+    var req = {
+    method: 'POST',
+    url: "http://localhost:3000/json",
+    headers : {
+        'Content-Type' : 'application/json'
+    },
+    body: JSON.stringify(datos1)
+    };
+
+
 }
 
 function saveData2() {
-    var datos2 = data2.getData({
-      type: {
-        start: 'ISODate',
-        end: 'ISODate'
-      }
-    });
+    var datos2 = data2.toJSON();
     $.ajax({
       type: "POST",
       url: "../../app.js",
@@ -147,7 +155,3 @@ function saveData2() {
       alert("Data Saved: " + msg);
     });
     }
-
-
-save1.onclick = saveData1;
-save2.onclick = saveData2;

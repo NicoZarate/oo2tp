@@ -81,12 +81,18 @@ app.use(function(err, req, res, next) {
 
 module.exports = app;
 
-app.post('/some/path', function(req, res) {
-  fs.writeFile('filename', res.body, function(err) {
-    if (err) {
-      res.send('Something when wrong');
-    } else {
-      res.send('Saved!');
-    }
-  })
-});
+app.post('/json', function(req, res) {
+  person=req.body;
+  savePersonToPublicFolder(person, function(err) {
+      if (err) {
+        alert('User not saved');
+        return;
+      }
+
+      alert('User saved');
+    });
+  });
+
+  function savePersonToPublicFolder(person, callback) {
+    fs.writeFile('./public/person.json', JSON.stringify(person), callback);
+  }
