@@ -10,7 +10,8 @@ google.setOnLoadCallback(drawVisualization);
 var vis1;
 var vis2;
 var json;
-
+var save1 = document.getElementById('save1');
+var save2 = document.getElementById('save2');
 
 function createTimeline1() {
 
@@ -114,29 +115,38 @@ function timechange2() {
 }
 
 function saveData1() {
-var data = data1.getData({
-  type: {
-    start: 'ISODate',
-    end: 'ISODate'
-  }
-});
+    var datos1 = data1.getData({
+      type: {
+        start: 'ISODate',
+        end: 'ISODate'
+      }
 
-function saveData2() {
-var data = data2.getData({
-  type: {
-    start: 'ISODate',
-    end: 'ISODate'
-  }
-});
+    });
 
-
-
-// serialize the data and put it in the textarea
-txtData.value = JSON.stringify(data, null, 2);
+    $.ajax({
+      type: "POST",
+      url: "../../app.js",
+      data: {datos1}
+    }).done(function(msg) {
+      alert("Data Saved: " + msg);
+    });
 }
 
-
-
+function saveData2() {
+    var datos2 = data2.getData({
+      type: {
+        start: 'ISODate',
+        end: 'ISODate'
+      }
+    });
+    $.ajax({
+      type: "POST",
+      url: "../../app.js",
+      data: {datos2}
+    }).done(function(msg) {
+      alert("Data Saved: " + msg);
+    });
+    }
 
 
 save1.onclick = saveData1;

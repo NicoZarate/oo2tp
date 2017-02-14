@@ -4,7 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-
+var fs = require('fs');
 
 
 
@@ -80,3 +80,13 @@ app.use(function(err, req, res, next) {
 });
 
 module.exports = app;
+
+app.post('/some/path', function(req, res) {
+  fs.writeFile('filename', res.body, function(err) {
+    if (err) {
+      res.send('Something when wrong');
+    } else {
+      res.send('Saved!');
+    }
+  })
+});
