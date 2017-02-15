@@ -5,7 +5,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var fs = require('fs');
-
+ 
 
 
 var time = require('./routes/time');
@@ -14,7 +14,7 @@ var intento = require('./routes/intento');
 
 
 
-
+var router = express.Router();
 
 
 
@@ -35,6 +35,20 @@ var intento = require('./routes/intento');
 
 var app = express();
 
+
+app.use(router); 
+app.use(bodyParser.json());  
+app.use(bodyParser.urlencoded({ 
+   extended: true 
+}));
+
+
+
+
+
+
+
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
@@ -42,8 +56,26 @@ app.set('view engine', 'jade');
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+
+//app.use(bodyParser.json());
+
+
+
+/*
+var bodyParser = require('body-parser');
+app.use(bodyParser.json()); // support json encoded bodies
+app.use(bodyParser.urlencoded({ extended: true }));
+
+*/
+
+
+
+
+
+
+
+
+//app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'node_modules')));
@@ -51,8 +83,6 @@ app.use(express.static(path.join(__dirname, 'node_modules')));
 
 
 app.use('/', time);
-
-
 
 
 
@@ -79,20 +109,23 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
+
+
+app.use(bodyParser.json());  
+router.post('/traerJson', function (request, response) { 
+
+
+
+  console.log('ola');
+
+
+
+
+});
+
+
+
+
+
 module.exports = app;
 
-app.post('/json', function(req, res) {
-  person=req.body;
-  savePersonToPublicFolder(person, function(err) {
-      if (err) {
-        alert('User not saved');
-        return;
-      }
-
-      alert('User saved');
-    });
-  });
-
-  function savePersonToPublicFolder(person, callback) {
-    fs.writeFile('./public/person.json', JSON.stringify(person), callback);
-  }

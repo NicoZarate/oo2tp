@@ -123,25 +123,44 @@ function timechange2() {
 function saveData1() {
     var datos1 = data1.toJSON();
 
-/*    $.ajax({
+
+   $.ajax({
       type: "POST",
-      url: "http://localhost:3000/json",
-      data: {datos1}
-    }).done(function(msg) {
-      alert("Data Saved: " + msg);
+      url: "http://localhost:3000/traerJson",
+      data: JSON.stringify(datos1),
+      contentType: "application/json; charset=utf-8",
+      dataType: "json",
+      success: function(data){alert(data);},
+      failure: function(errMsg) {
+        alert(errMsg);
+       }
     });
 
- */
+/*$.ajax({
+    type: "POST",
+    url: "/webservices/PodcastService.asmx/CreateMarkers",
+    // The key needs to match your method's input parameter (case-sensitive).
+    data: JSON.stringify({ Markers: markers }),
+    contentType: "application/json; charset=utf-8",
+    dataType: "json",
+    success: function(data){alert(data);},
+    failure: function(errMsg) {
+        alert(errMsg);
+    }
+});
+*/
 
+
+/* 
     var req = {
     method: 'POST',
-    url: "http://localhost:3000/json",
+    url: "http://localhost:3000/traerJson'",
     headers : {
-        'Content-Type' : 'application/json'
+        'Content-Type' : 'application/json; charset=utf-8'
     },
-    body: JSON.stringify(datos1)
+    body: datos1
     };
-
+ */
 
 }
 
