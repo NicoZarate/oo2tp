@@ -9,12 +9,15 @@ var fs = require('fs');
 
 
 var time = require('./routes/time');
-var intento = require('./routes/intento');
+//var intento = require('./routes/intento');
 
 
 
 
-var router = express.Router();
+
+
+
+//var router = express.Router();
 
 
 
@@ -36,12 +39,9 @@ var router = express.Router();
 var app = express();
 
 
-app.use(router); 
+//app.use(router); 
 app.use(bodyParser.json());  
-app.use(bodyParser.urlencoded({ 
-   extended: true 
-}));
-
+app.use(bodyParser.urlencoded({ extended: false }));
 
 
 
@@ -88,7 +88,7 @@ app.use('/', time);
 
 
 
-app.use('/intento', intento);
+//app.use('/intento', intento);
 
 
 // catch 404 and forward to error handler
@@ -111,17 +111,7 @@ app.use(function(err, req, res, next) {
 
 
 
-app.use(bodyParser.json());  
-router.post('/traerJson', function (request, response) { 
 
-
-
-  console.log('ola');
-
-
-
-
-});
 
 
 

@@ -123,18 +123,20 @@ function timechange2() {
 function saveData1() {
     var datos1 = data1.toJSON();
 
+//console.log(datos1);
+
+//var datos1 = JSON.stringify(datos1);
+console.log(datos1);
 
    $.ajax({
-      type: "POST",
-      url: "http://localhost:3000/traerJson",
-      data: JSON.stringify(datos1),
-      contentType: "application/json; charset=utf-8",
-      dataType: "json",
-      success: function(data){alert(data);},
-      failure: function(errMsg) {
-        alert(errMsg);
-       }
-    });
+  type: 'POST',
+  dataType: 'text',
+  url: "http://localhost:3000/traerJSON",
+  data: datos1,
+  error: function(e) {
+    console.log(e);
+  }
+});
 
 /*$.ajax({
     type: "POST",
