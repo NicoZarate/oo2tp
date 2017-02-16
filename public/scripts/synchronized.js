@@ -58,8 +58,20 @@ function createTimeline1() {
     
     function addHandler() {
         var selectedItem = vis1.getSelection()[0];
+        var row = vis1.getSelection()[0].row;
+        var col = vis1.getSelection()[0].column;
+        var ola = data1.getFormattedValue(row, 0);
       prettyPrompt('Add item', 'Enter text content for new item:', data1.getValue(selectedItem.row, 0), function (value) {
         if (value) {
+            //console.log(row);
+            //console.log(col);
+            //console.log(ola);
+
+            console.log(data1.getValue(row, 0));
+
+
+           // data.addRow(['Hermione', new Date(1999,0,1)]); // Add a row with a string and a date value.
+
           data1.getValue(selectedItem.row, 0) = value;
           callback(selectedItem); // send back adjusted new item
         }
