@@ -109,9 +109,15 @@ function createTimeline1() {
     
     google.visualization.events.addListener(vis1, 'timechange', timechange1);
 
-    google.visualization.events.addListener(vis1, 'select',function (event, properties) {
-        logEvent(event, properties);
-     });
+    google.visualization.events.addListener(vis1, 'select',selectHandler) ;
+    //{
+      //  logEvent(event, properties);
+        //alert("hola evento");
+     //});
+    function selectHandler(e, properties) {
+        //alert('hola evento');
+        logEvent(e, properties);
+     }
     // Draw our timeline with the created data and options
     
     vis1.draw(data1, options1);
