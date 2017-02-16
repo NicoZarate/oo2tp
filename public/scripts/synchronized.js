@@ -40,63 +40,6 @@ function createTimeline1() {
         height: "300px",
         "showCustomTime": true,
         "editable": true,
-         onAdd: function (item, callback) {
-      prettyPrompt('Add item', 'Enter text content for new item:', item.content, function (value) {
-        if (value) {
-          item.content = value;
-          callback(item); // send back adjusted new item
-        }
-        else {
-          callback(null); // cancel item creation
-        }
-      });
-    },
-
-    onMove: function (item, callback) {
-      var title = 'Do you really want to move the item to\n' +
-          'start: ' + item.start + '\n' +
-          'end: ' + item.end + '?';
-
-      prettyConfirm('Move item', title, function (ok) {
-        if (ok) {
-          callback(item); // send back item as confirmation (can be changed)
-        }
-        else {
-          callback(null); // cancel editing item
-        }
-      });
-    },
-
-    onMoving: function (item, callback) {
-      if (item.start < min) item.start = min;
-      if (item.start > max) item.start = max;
-      if (item.end   > max) item.end   = max;
-
-      callback(item); // send back the (possibly) changed item
-    },
-
-    onUpdate: function (item, callback) {
-      prettyPrompt('Update item', 'Edit items text:', item.content, function (value) {
-        if (value) {
-          item.content = value;
-          callback(item); // send back adjusted item
-        }
-        else {
-          callback(null); // cancel updating the item
-        }
-      });
-    },
-
-    onRemove: function (item, callback) {
-      prettyConfirm('Remove item', 'Do you really want to remove item ' + item.content + '?', function (ok) {
-        if (ok) {
-          callback(item); // confirm deletion
-        }
-        else {
-          callback(null); // cancel deletion
-        }
-      });
-    }
     };
 
     // Instantiate our timeline object.
@@ -109,15 +52,31 @@ function createTimeline1() {
     
     google.visualization.events.addListener(vis1, 'timechange', timechange1);
 
-    google.visualization.events.addListener(vis1, 'select',selectHandler) ;
-    //{
-      //  logEvent(event, properties);
-        //alert("hola evento");
-     //});
-    function selectHandler(e, properties) {
-        //alert('hola evento');
-        logEvent(e, properties);
-     }
+    google.visualization.events.addListener(vis1, 'select', selectHandler) ;
+
+    google.visualization.events.addListener(vis1, 'add', addHandler) ;
+    
+    function addHandler() {
+        var selectedItem = vis1.getSelection()[0];
+      prettyPrompt('Add item', 'Enter text content for new item:', data1.getValue(selectedItem.row, 0), function (value) {
+        if (value) {
+          data1.getValue(selectedItem.row, 0) = value;
+          callback(selectedItem); // send back adjusted new item
+        }
+        else {
+          callback(null); // cancel item creation
+        }
+      });
+    }
+
+    function selectHandler() {
+          var selectedItem = vis1.getSelection()[0];
+          if (selectedItem) {
+            var topping = data1.getValue(selectedItem.row, 0);
+            alert('The user selected ' + topping);
+          }
+        }
+
     // Draw our timeline with the created data and options
     
     vis1.draw(data1, options1);
