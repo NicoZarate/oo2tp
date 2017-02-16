@@ -35,11 +35,68 @@ function createTimeline1() {
 
 
     // specify options
-    options1 = {"width":  "100%",
-        "height": "300px",
-        "layout": "box",
+    var options1 = {
+        width:  "100%",
+        height: "300px",
         "showCustomTime": true,
-        "editable": true
+        "editable": true,
+         onAdd: function (item, callback) {
+      prettyPrompt('Add item', 'Enter text content for new item:', item.content, function (value) {
+        if (value) {
+          item.content = value;
+          callback(item); // send back adjusted new item
+        }
+        else {
+          callback(null); // cancel item creation
+        }
+      });
+    },
+
+    onMove: function (item, callback) {
+      var title = 'Do you really want to move the item to\n' +
+          'start: ' + item.start + '\n' +
+          'end: ' + item.end + '?';
+
+      prettyConfirm('Move item', title, function (ok) {
+        if (ok) {
+          callback(item); // send back item as confirmation (can be changed)
+        }
+        else {
+          callback(null); // cancel editing item
+        }
+      });
+    },
+
+    onMoving: function (item, callback) {
+      if (item.start < min) item.start = min;
+      if (item.start > max) item.start = max;
+      if (item.end   > max) item.end   = max;
+
+      callback(item); // send back the (possibly) changed item
+    },
+
+    onUpdate: function (item, callback) {
+      prettyPrompt('Update item', 'Edit items text:', item.content, function (value) {
+        if (value) {
+          item.content = value;
+          callback(item); // send back adjusted item
+        }
+        else {
+          callback(null); // cancel updating the item
+        }
+      });
+    },
+
+    onRemove: function (item, callback) {
+      prettyConfirm('Remove item', 'Do you really want to remove item ' + item.content + '?', function (ok) {
+        if (ok) {
+          callback(item); // confirm deletion
+        }
+        else {
+          callback(null); // cancel deletion
+        }
+      });
+    }
     };
 
     // Instantiate our timeline object.
@@ -52,6 +109,9 @@ function createTimeline1() {
     
     google.visualization.events.addListener(vis1, 'timechange', timechange1);
 
+    google.visualization.events.addListener(vis1, 'select',function (event, properties) {
+        logEvent(event, properties);
+     });
     // Draw our timeline with the created data and options
     
     vis1.draw(data1, options1);
@@ -78,7 +138,64 @@ function createTimeline2() {
         width:  "100%",
         height: "300px",
         "showCustomTime": true,
-        "editable": true
+        "editable": true,
+         onAdd: function (item, callback) {
+      prettyPrompt('Add item', 'Enter text content for new item:', item.content, function (value) {
+        if (value) {
+          item.content = value;
+          callback(item); // send back adjusted new item
+        }
+        else {
+          callback(null); // cancel item creation
+        }
+      });
+    },
+
+    onMove: function (item, callback) {
+      var title = 'Do you really want to move the item to\n' +
+          'start: ' + item.start + '\n' +
+          'end: ' + item.end + '?';
+
+      prettyConfirm('Move item', title, function (ok) {
+        if (ok) {
+          callback(item); // send back item as confirmation (can be changed)
+        }
+        else {
+          callback(null); // cancel editing item
+        }
+      });
+    },
+
+    onMoving: function (item, callback) {
+      if (item.start < min) item.start = min;
+      if (item.start > max) item.start = max;
+      if (item.end   > max) item.end   = max;
+
+      callback(item); // send back the (possibly) changed item
+    },
+
+    onUpdate: function (item, callback) {
+      prettyPrompt('Update item', 'Edit items text:', item.content, function (value) {
+        if (value) {
+          item.content = value;
+          callback(item); // send back adjusted item
+        }
+        else {
+          callback(null); // cancel updating the item
+        }
+      });
+    },
+
+    onRemove: function (item, callback) {
+      prettyConfirm('Remove item', 'Do you really want to remove item ' + item.content + '?', function (ok) {
+        if (ok) {
+          callback(item); // confirm deletion
+        }
+        else {
+          callback(null); // cancel deletion
+        }
+      });
+    }
     };
 
     // Instantiate our timeline object.
@@ -92,8 +209,37 @@ function createTimeline2() {
 
     
     onrangechange1();  // to set the range equal initially
-}
 
+
+ 
+}
+ function logEvent(event, properties) {
+    var log = document.getElementById('log');
+    var msg = document.createElement('div');
+    msg.innerHTML = 'event=' + JSON.stringify(event) + ', ' +
+        'properties=' + JSON.stringify(properties);
+    log.firstChild ? log.insertBefore(msg, log.firstChild) : log.appendChild(msg);
+  }
+
+  function prettyConfirm(title, text, callback) {
+    swal({
+      title: title,
+      text: text,
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: "#DD6B55"
+    }, callback);
+  }
+
+  function prettyPrompt(title, text, inputValue, callback) {
+    swal({
+      title: title,
+      text: text,
+      type: 'input',
+      showCancelButton: true,
+      inputValue: inputValue
+    }, callback);
+  }
 // Called when the Visualization API is loaded.
 function drawVisualization() {
     createTimeline1();
