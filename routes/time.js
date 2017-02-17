@@ -6,14 +6,14 @@ router.get('/', function(req, res, next) {
   res.render('time', { title: 'Timelines Synchronized' });
 });
 
-router.post('/traerJSON', function (request, response) { 
+//router.post('/traerJSON', function (request, response) { 
 
 
-  console.log(request.body);
+ // console.log(JSON.stringify(request.body));
 
 
 
 
-});
+//});
 
 module.exports = router;

@@ -10,7 +10,7 @@ var fs = require('fs');
 
 var time = require('./routes/time');
 //var intento = require('./routes/intento');
-
+var endline = require('./routes/endline');
 
 
 
@@ -82,7 +82,8 @@ app.use(express.static(path.join(__dirname, 'node_modules')));
 
 
 
-app.use('/', time);
+app.use('/time', time);
+app.use('/', endline);
 
 
 
