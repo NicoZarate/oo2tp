@@ -1,14 +1,14 @@
-var items = new vis.DataSet([
-    {id: 1, content: 'item 1', start: new Date(2013, 3, 20)},
-    {id: 2, content: 'item 2', start: new Date(2013, 3, 14)},
-    {id: 3, content: 'item 3', start: new Date(2013, 3, 18)},
-    {id: 4, content: 'item 4', start: new Date(2013, 3, 16), end: new Date(2013, 3, 19)},
-    {id: 5, content: 'item 5', start: new Date(2013, 3, 25)},
-    {id: 6, content: 'item 6', start: new Date(2013, 3, 27)}
-  ]);
+var jsonData = $.ajax({
+      url: "./scripts/mi.json",
+      dataType: "json",
+      async: false
+      }).responseText;
 
-  var min = new Date(2013, 3, 1); // 1 april
-  var max = new Date(2013, 3, 30, 23, 59, 59); // 30 april
+var evalledData = eval("("+jsonData+")");
+var items = new vis.DataSet(evalledData);
+
+  var min = new Date(2017, 3, 1); // 1 april
+  var max = new Date(2017, 3, 30, 23, 59, 59); // 30 april
 
   var container = document.getElementById('visualization');
   var options = {
