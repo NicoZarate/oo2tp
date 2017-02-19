@@ -1,12 +1,13 @@
-var jsonData = $.ajax({
+  var jsonData = $.ajax({
       url: "./scripts/mi.json",
       dataType: "json",
       async: false
       }).responseText;
 
-var evalledData = eval("("+jsonData+")");
-var items = new vis.DataSet(evalledData);
-
+  var evalledData = eval("("+jsonData+")");
+  var btnLoad = document.getElementById('load');
+  var btnSave = document.getElementById('save');
+  var items = new vis.DataSet(evalledData);
   var min = new Date(2017, 3, 1); // 1 april
   var max = new Date(2017, 3, 30, 23, 59, 59); // 30 april
 
@@ -79,11 +80,11 @@ var items = new vis.DataSet(evalledData);
   });
 
   function logEvent(event, properties) {
-    var log = document.getElementById('log');
+    //var log = document.getElementById('log');
     var msg = document.createElement('div');
     msg.innerHTML = 'event=' + JSON.stringify(event) + ', ' +
         'properties=' + JSON.stringify(properties);
-    log.firstChild ? log.insertBefore(msg, log.firstChild) : log.appendChild(msg);
+    //log.firstChild ? log.insertBefore(msg, log.firstChild) : log.appendChild(msg);
   }
 
   function prettyConfirm(title, text, callback) {
@@ -104,4 +105,28 @@ var items = new vis.DataSet(evalledData);
       showCancelButton: true,
       inputValue: inputValue
     }, callback);
+  }
+   function loadData () {
+    var data = evalledData;
+    items.clear();
+    items.add(data);
+    timeline.fit();
+  }
+
+  function saveData() {
+    var data = items.get({
+      type: {
+        start: 'ISODate',
+        end: 'ISODate'
+      }
+    });
+    $.ajax({
+      type: 'POST',
+      dataType: 'text',
+      url: "http://localhost:3000/save",
+      data: JSON.stringify(data, null, 0),
+      error: function(e) {
+        console.log(e);
+      }
+    });
   }

@@ -1,5 +1,5 @@
 [
-    {id: 1, content: 'item 1', start: new Date(2017, 3, 20)},
+    {id: 1, content: 'item 1', start: "2017-04-01T06:00:00-03:00"},
     {id: 2, content: 'item 2', start: new Date(2017, 3, 14)},
     {id: 3, content: 'item 3', start: new Date(2017, 3, 18)},
     {id: 4, content: 'item 4', start: new Date(2017, 3, 16), end: new Date(2017, 3, 19)},
