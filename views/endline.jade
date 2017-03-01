@@ -5,10 +5,11 @@ block content
         .container
             h1 Look at these timelines!
             p end line 
-    .buttons
-        input(#load type="button", value='↓ Load', onclick='loadData()')
-        input(#save type="button", value='↑ Save', onclick='saveData()')        
-    #visualization        
-    #log
-    script(src='scripts/callback.js') 
+    .container
+        .buttons
+            input(#load type="button", value='↓ Load', onclick='loadData()')
+            input(#save type="button", value='↑ Save', onclick='saveData()')        
+        #visualization        
+        #log
+        script(src='scripts/callback.js') 
     
