@@ -69,6 +69,9 @@ function createTimeline1() {
 
             console.log(data1.getValue(row, 0));
 
+            // esto devuelve Thu Feb 16 2017 18:00:00 GMT-0300 (ART)
+
+            //y yo kiero 2017,1,16
 
            // data.addRow(['Hermione', new Date(1999,0,1)]); // Add a row with a string and a date value.
 

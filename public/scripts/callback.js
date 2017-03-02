@@ -14,6 +14,9 @@
   var container = document.getElementById('visualization');
   var options = {
     editable: true,
+    min:0,
+    minHeight:"250px",
+    showMajorLabels:false,
 
     onAdd: function (item, callback) {
       prettyPrompt('Add item', 'Enter text content for new item:', item.content, function (value) {
