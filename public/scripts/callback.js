@@ -1,5 +1,5 @@
   var jsonData = $.ajax({
-      url: "./scripts/mi.json",
+      url: "./scripts/periodos.json",
       dataType: "json",
       async: false
       }).responseText;
@@ -123,6 +123,8 @@
         end: 'ISODate'
       }
     });
+
+
     $.ajax({
       type: 'POST',
       dataType: 'text',

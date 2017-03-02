@@ -7,31 +7,7 @@ var bodyParser = require('body-parser');
 var fs = require('fs');
  
 
-
-var time = require('./routes/time');
-//var intento = require('./routes/intento');
-var endline = require('./routes/endline');
-
-
-
-
-
-
-//var router = express.Router();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+var index = require('./routes/index');
 
 
 
@@ -39,7 +15,6 @@ var endline = require('./routes/endline');
 var app = express();
 
 
-//app.use(router); 
 app.use(bodyParser.json());  
 app.use(bodyParser.urlencoded({ extended: false }));
 
@@ -55,41 +30,14 @@ app.set('view engine', 'jade');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+
 app.use(logger('dev'));
 
-//app.use(bodyParser.json());
-
-
-
-/*
-var bodyParser = require('body-parser');
-app.use(bodyParser.json()); // support json encoded bodies
-app.use(bodyParser.urlencoded({ extended: true }));
-
-*/
-
-
-
-
-
-
-
-
-//app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'node_modules')));
 
-
-
-app.use('/time', time);
-app.use('/', endline);
-
-
-
-
-
-//app.use('/intento', intento);
+app.use('/', index);
 
 
 // catch 404 and forward to error handler
@@ -119,4 +67,3 @@ app.use(function(err, req, res, next) {
 
 
 module.exports = app;
-
