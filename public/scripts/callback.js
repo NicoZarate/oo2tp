@@ -3,10 +3,10 @@
       dataType: "json",
       async: false
       }).responseText;
-  var aux = JSON.parse(jsonData);
-  var aux2 = JSON.stringify(aux.ticker);
-  var evalledData = eval("(["+aux2+"])");
-  //var evalledData = eval("(["+jsonData+"])");
+  var global;
+  var myJson = JSON.parse(jsonData);
+  convertJsonForVis(myJson);
+  var evalledData = eval("("+global+")");
   var btnLoad = document.getElementById('load');
   var btnSave = document.getElementById('save');
   var items = new vis.DataSet(evalledData);
@@ -135,4 +135,26 @@
         console.log(e);
       }
     });
+  }
+  function convertJsonForVis(myJson){
+       var array = [];
+       $.each(myJson, function(i, item) {
+            jsonInArrangement(item, array);
+
+       });
+        global = JSON.stringify(array);
+  }
+     
+
+  function jsonInArrangement(aJson, array){
+     var j = {
+      "start": aJson.start,
+      "end":aJson.end,
+      "widget_id":aJson.widget_id,
+      "transition_in":aJson.transition_in,
+      "transition_out":aJson.transition_out,
+      "content":aJson.widget_id
+     };
+     array.push(j);
+
   }
