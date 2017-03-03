@@ -3,13 +3,14 @@
       dataType: "json",
       async: false
       }).responseText;
-
-  var evalledData = eval("("+jsonData+")");
+  var aux = JSON.parse(jsonData);
+  var aux2 = JSON.stringify(aux.ticker);
+  var evalledData = eval("(["+aux2+"])");
+  //var evalledData = eval("(["+jsonData+"])");
   var btnLoad = document.getElementById('load');
   var btnSave = document.getElementById('save');
   var items = new vis.DataSet(evalledData);
-  var min = new Date(2017, 3, 1); // 1 april
-  var max = new Date(2017, 3, 30, 23, 59, 59); // 30 april
+  
 
   var container = document.getElementById('visualization');
   var options = {
