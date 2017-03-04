@@ -8,7 +8,8 @@ router.get('/', function(req, res, next) {
 });
 router.post('/save', function (request, response) { 
 	var data = request.body;
-   fs.writeFile("test.json", JSON.stringify(data), function(err) {
+	data = JSON.stringify(data);
+   fs.writeFile("test.json",data , function(err) {
     if(err) {
         return console.log(err);
     }

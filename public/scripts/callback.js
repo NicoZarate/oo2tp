@@ -124,18 +124,37 @@
         end: 'ISODate'
       }
     });
-
-
+    data = reverseJsonForvis(data);
     $.ajax({
       type: 'POST',
       dataType: 'text',
       url: "http://localhost:3000/save",
-      data: JSON.stringify(data, null, 0),
+      data: data,
       error: function(e) {
         console.log(e);
       }
     });
   }
+  function reverseJsonForvis(myJsonVis){
+      var str= ''
+       $.each(myJsonVis, function(i, item) {
+           var j = {
+              "start":item.start.getMilliseconds(),
+              "end":item.end.getMilliseconds(),
+              "widget_id":item.widget_id,
+              "transition_in":item.transition_in,
+              "transition_out":item.transition_out,
+              "content":item.widget_id
+            };
+            str= str + JSON.stringify(j);
+            if(i < (myJsonVis.length -1) ){
+               str =str + ',';
+          }
+       });
+       return str;
+  }
+   
+
   function convertJsonForVis(myJson){
        var array = [];
        $.each(myJson, function(i, item) {
