@@ -1,3 +1,5 @@
+
+
   var jsonData = $.ajax({
       url: "./scripts/periodos.json",
       dataType: "json",
@@ -7,9 +9,12 @@
   var myJson = JSON.parse(jsonData);
   convertJsonForVis(myJson);
   var evalledData = eval("("+global+")");
-  var btnLoad = document.getElementById('load');
-  var btnSave = document.getElementById('save');
+//  var btnLoad = document.getElementById('load');
+//  var btnSave = document.getElementById('save');
   var items = new vis.DataSet(evalledData);
+
+
+
   
 
   var container = document.getElementById('visualization');
@@ -20,15 +25,8 @@
     showMajorLabels:false,
 
     onAdd: function (item, callback) {
-      prettyPrompt('Add item', 'Enter text content for new item:', item.content, function (value) {
-        if (value) {
-          item.content = value;
-          callback(item); // send back adjusted new item
-        }
-        else {
-          callback(null); // cancel item creation
-        }
-      });
+      var form = document.getElementById('modalform');
+      alert(form);
     },
 
     onMove: function (item, callback) {

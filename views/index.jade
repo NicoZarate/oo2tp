@@ -1,6 +1,9 @@
 extends layout
 
 block content
+    form(#modalform style="display:none")
+            input(type="text", value="something")
+            input(type="text", value="somethingelse") 
     .jumbotron
         .container
             h1 Look at these timelines!
@@ -8,7 +11,7 @@ block content
     .container
         .buttons
             input(#load type="button", value='↓ Load', onclick='loadData()')
-            input(#save type="button", value='↑ Save', onclick='saveData()')        
+            input(#save type="button", value='↑ Save', onclick='saveData()')
         #visualization        
         #log
         script(src='scripts/callback.js') 
