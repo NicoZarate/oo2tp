@@ -148,7 +148,7 @@
             };
             str= str + JSON.stringify(j);
             if(i < (myJsonVis.length -1) ){
-               str =str + ',';
+               str =str + ';';
           }
        });
        return str;
