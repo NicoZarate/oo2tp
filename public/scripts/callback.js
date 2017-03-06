@@ -1,26 +1,10 @@
 
-    
-
-  var jsonData = $.ajax({
-      url: "./scripts/periodos.json",
-      dataType: "json",
-      async: false
-      }).responseText;
-  var global;
-  var myJson = JSON.parse(jsonData);
-  convertJsonForVis(myJson);
-  var evalledData = eval("("+global+")");
+  var evalledData = traerJsonParaVis();
   //var btnLoad = document.getElementById('load');
   //var btnSave = document.getElementById('save');
   var items = new vis.DataSet(evalledData);
 
 
-
-
-
-      
-
-  
 
 
 
@@ -149,9 +133,9 @@
     }, callback);
   }
    function loadData () {
-    var data = evalledData;
+    var evalledData = traerJsonParaVis();
     items.clear();
-    items.add(data);
+    items.add(evalledData);
     timeline.fit();
   }
 
@@ -191,15 +175,28 @@
        });
        return str;
   }
-   
+
+  //---------------------estas funciones trae y convierte a json en un formato entendible para vis ---
+   function traerJsonParaVis(){
+       var jsonData = $.ajax({
+          url: "./scripts/periodos.json",
+          dataType: "json",
+          async: false
+          }).responseText;
+      var myJson = JSON.parse(jsonData);
+      myJson=convertJsonForVis(myJson);
+      return eval("("+myJson+")");
+
+ } 
 
   function convertJsonForVis(myJson){
        var array = [];
+       var str;
        $.each(myJson, function(i, item) {
             jsonInArrangement(item, array);
 
        });
-        global = JSON.stringify(array);
+        return JSON.stringify(array);
   }
      
 
@@ -215,6 +212,8 @@
      array.push(j);
 
   }
+
+  //----------------------------------------end-----------------------------------
   function getMilliseconds(aDate){
       var str = JSON.stringify(aDate);
       str = Number(str.slice(-5,-2));
