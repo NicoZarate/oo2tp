@@ -8,7 +8,6 @@ router.get('/', function(req, res, next) {
 });
 router.post('/save', function (request, response) { 
 	var strJson = convertRequestInJson(request.body);
-	console.log(strJson);
 	fs.writeFile("./public/scripts/periodos.json",strJson , function(err) {
     if(err) {
         return console.log(err);

@@ -1,5 +1,5 @@
-$(document).ready(function() {
-    // Handler for .ready() called.
+
+    
 
   var jsonData = $.ajax({
       url: "./scripts/periodos.json",
@@ -10,8 +10,8 @@ $(document).ready(function() {
   var myJson = JSON.parse(jsonData);
   convertJsonForVis(myJson);
   var evalledData = eval("("+global+")");
-//  var btnLoad = document.getElementById('load');
-//  var btnSave = document.getElementById('save');
+  //var btnLoad = document.getElementById('load');
+  //var btnSave = document.getElementById('save');
   var items = new vis.DataSet(evalledData);
 
 
@@ -33,11 +33,13 @@ $(document).ready(function() {
     showMajorLabels:false,
 
     onAdd: function (item, callback) {
-      var dialogform = document.getElementById('ola');
-      alert(dialogform);
+      $(document).ready(function() {
+        // Handler for .ready() called.
+       var dialogform = document.getElementById('ola');
+       alert(dialogform);
 
 
-      var dialogform = document.getElementById('ola');
+       var dialogform = document.getElementById('ola');
       
 
       uno = $( "#uno" ),
@@ -65,7 +67,7 @@ $(document).ready(function() {
       });
 
       dialog.dialog( "open" );
-    },
+   }); },
 
     onMove: function (item, callback) {
       var title = 'Do you really want to move the item to\n' +
@@ -172,11 +174,11 @@ $(document).ready(function() {
     });
   }
   function reverseJsonForvis(myJsonVis){
-      var str= ''
+      var str= '';
        $.each(myJsonVis, function(i, item) {
            var j = {
-              "start":item.start.getMilliseconds(),
-              "end":item.end.getMilliseconds(),
+              "start":getMilliseconds(item.start),
+              "end":getMilliseconds(item.end),
               "widget_id":item.widget_id,
               "transition_in":item.transition_in,
               "transition_out":item.transition_out,
@@ -213,6 +215,9 @@ $(document).ready(function() {
      array.push(j);
 
   }
+  function getMilliseconds(aDate){
+      var str = JSON.stringify(aDate);
+      str = Number(str.slice(-5,-2));
+      return str;
+  }
 
-
-});
