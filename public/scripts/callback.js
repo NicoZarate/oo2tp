@@ -17,41 +17,9 @@
     showMajorLabels:false,
 
     onAdd: function (item, callback) {
-      $(document).ready(function() {
-        // Handler for .ready() called.
-       var dialogform = document.getElementById('ola');
-       alert(dialogform);
-
-
-       var dialogform = document.getElementById('ola');
-      
-
-      uno = $( "#uno" ),
-      alert(uno);
-      dos = $( "#dos" ),
-      allFields = $( [] ).add( uno ).add( dos ),
-      tips = $( ".validateTips" );
-
-
-      var dialog = $( "#dialog" ).dialog({
-        autoOpen: false,
-        height: 400,
-        width: 350,
-        modal: true,
-        buttons: {
-          "Create an account": 'ola',
-          Cancel: function() {
-            dialog.dialog( "close" );
-          }
-        },
-        close: function() {
-          form[ 0 ].reset();
-          allFields.removeClass( "ui-state-error" );
-        }
-      });
-
-      dialog.dialog( "open" );
-   }); },
+      jQuery.noConflict(); 
+      $('#myModal').modal('show');
+    },
 
     onMove: function (item, callback) {
       var title = 'Do you really want to move the item to\n' +
