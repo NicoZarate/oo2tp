@@ -1,11 +1,23 @@
 var express = require('express');
 var router = express.Router();
+var request = require('request');
 var fs = require('fs');
 
-/* GET high. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Timelines Synchronized' });
+  fs.readFile('./public/model_widgets.json', 'utf8', function (err, data) {
+        var channels = JSON.parse(data);
+
+        console.log(channels);
+        res.render('index', { title : 'Main page', result : channels });
+  });
+    
 });
+
+
+
+
+
+
 router.post('/save', function (request, response) { 
 	var strJson = convertRequestInJson(request.body);
 	fs.writeFile("./public/scripts/periodos.json",strJson , function(err) {

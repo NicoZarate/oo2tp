@@ -6,6 +6,9 @@
 
 
 
+  
+
+
 
 
 
@@ -17,7 +20,10 @@
     showMajorLabels:false,
 
     onAdd: function (item, callback) {
-      jQuery.noConflict(); 
+      jQuery.noConflict();
+      
+    
+
       $('#myModal').modal('show');
     },
 
@@ -187,4 +193,5 @@
       str = Number(str.slice(-5,-2));
       return str;
   }
+
 
