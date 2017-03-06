@@ -1,18 +1,26 @@
 html
   head
     title= title
+    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css')
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js')
+    script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js')
+
+
+
     script(src='/vis/dist/vis.js')        
     link(rel="stylesheet", href="/bootstrap/dist/css/bootstrap.min.css", type="text/css")
     script(src='/scripts/jquery-3.1.1.min.js')
     script(src='/Timeline/jsapi')
     script(src='/Timeline/timeline.js')      
     link(rel="stylesheet", href="/Timeline/timeline.css", type="text/css")
-    //script(src='scripts/synchronized.js')
+
     script(src='Timeline/a')
     script(src='Timeline/formatendefaulten.js')  
     script(src='/Timeline/sweetalert.js')      
     link(rel="stylesheet", href="/Timeline/sweetalert.css", type="text/css")
     link(rel="stylesheet", href="Timeline/vis-timeline-graph2d.css", type="text/css")
-    script(type='text/javascript' src='funciones.js')         
+
+    script(src='/scripts/callback.js')
+    
   body
     block content

@@ -1,9 +1,35 @@
 extends layout
 
+
+
 block content
-    form(#modalform style="display:none")
-            input(type="text", value="something")
-            input(type="text", value="somethingelse") 
+
+
+    button.btn.btn-info.btn-lg(type='button', data-toggle='modal', data-target='#myModal') Agregar item
+
+
+        // Modal
+    #myModal.modal.fade(role='dialog')
+      .modal-dialog
+        // Modal content
+        .modal-content
+          .modal-header
+            button.close(type='button', data-dismiss='modal') ×
+            h4.modal-title Agregar Item
+          .modal-body
+            p agregar cosa
+            input(type="text", value='ola')
+            p agregar otra cosa
+            input(type="text", value='ktal')
+            p de que tipo?
+            select
+              option(value='logo') Logo
+              option(value='ticket') Ticket
+
+          .modal-footer
+            button.btn.btn-default(type='submit') Aceptar
+            button.btn.btn-default(type='button', data-dismiss='modal') Cerrar
+
     .jumbotron
         .container
             h1 Look at these timelines!
@@ -14,5 +40,3 @@ block content
             input(#save type="button", value='↑ Save', onclick='saveData()')
         #visualization        
         #log
-        script(src='scripts/callback.js') 
-    
