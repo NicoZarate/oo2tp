@@ -18,15 +18,27 @@ block content
             p agregar otra cosa
             input(type="text", value='ktal')
             p de que tipo?
-            select
+            select(name='country')
                 each value, key in result
 
                     option(value="#{key}") #{key}
-                 
+            
+            p Las transiciones disponibles son:
+            select
+
+                
+
+                each value, key in trans
+
+                    each v, k in value
+
+
+                        option(value="#{v}") #{v}
+                      
 
           .modal-footer
-            button.btn.btn-default(type='submit') Aceptar
-            button.btn.btn-default(type='button', data-dismiss='modal') Cerrar
+            button.btn.btn-default(type='button', onclick='guardar()') Guardar
+    
 
     .jumbotron
         .container

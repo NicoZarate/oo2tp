@@ -5,7 +5,23 @@
   var items = new vis.DataSet(evalledData);
 
 
+$(".country").change(function()
+{
+var id=$(this).val();
+var dataString = 'id='+ id;
+$.ajax
+({
+type: "POST",
+url: "ajax_city.php",
+data: dataString,
+cache: false,
+success: function(html)
+{
+$(".city").html(html);
+} 
+});
 
+});
   
 
 
@@ -22,7 +38,6 @@
     onAdd: function (item, callback) {
       jQuery.noConflict();
       
-    
 
       $('#myModal').modal('show');
     },
