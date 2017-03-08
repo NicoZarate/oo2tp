@@ -17,7 +17,7 @@ block content
             input#start(type="hidden" name="start" value="#{start}")
             input#end(type="hidden" name="end" value="#{end}")
             
-            input#nombre(type="text", value='')
+            input#nombre(required='required', data-error='Please fill this field...', type="text", value='')
 
             p de que tipo?
             select#tipo(onchange='cambioselect()')

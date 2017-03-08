@@ -8,16 +8,58 @@
 	    "tran1":"blur",
 	    "tran2":"bunce"
 	},
+	"WidgetLiveVideo":{
+	    "tran1":"blur",
+	    "tran2":"bunce"
+	},
+	"WidgetNetVideo":{
+	    "tran1":"blur",
+	    "tran2":"bunce"
+	},
+	"empty_column":{
+	    "tran1":"left",
+	    "tran2":"right"
+	},
+	"logo":{
+	    "tran1":"blur",
+	    "tran2":"bunce"
+	},
+	"twitter_user":{
+	    "tran1":"blur",
+	    "tran2":"bunce"
+	},
+	"w_news":{
+	    "tran1":"blur",
+	    "tran2":"bunce"
+	},
+	"fb":{
+	    "tran1":"blur",
+	    "tran2":"up"
+	},
+	"publicidad":{
+		"tran1":"blur",
+	    "tran2":"down"
+	},
+	"forecast":{
+	    "tran1":"blur",
+	    "tran2":"up"
+	},
 	"ticker":{
 	    "tran1":"blur",
 	    "tran2":"up"
 	},
-	"fb":{
-		"tran1":"blur",
-	    "tran2":"down"
+	"WidgetTickerIconTelam":{
+	    "tran1":"blur",
+	    "tran2":"up"
+	},
+	"WidgetTickerFeather":{
+	    "tran1":"blur",
+	    "tran2":"up"
+	},
+	"WidgetTickerBackground":{
+	    "tran1":"blur",
+	    "tran2":"up"
 	}
 
 
 }
-
-
