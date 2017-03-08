@@ -241,3 +241,29 @@ function traerTrans(){
       return jsonData;
 
  } 
+
+
+ //---------------------------------- ejemplo para gabi----------------------
+ function agregarJson(aJson){
+     var ejemplo = {"start":22,
+       "end":25,
+       "widget_id":"ticker",
+       "transition_in":"down",
+       "transition_out":"down",
+       "content":"ticker"
+     };
+     var data = items.get({
+      type: {
+        start: 'ISODate',
+        end: 'ISODate'
+      }
+    });
+
+     data.push(ejemplo);
+     alert(data);
+     items.clear();
+    items.add(data);
+    timeline.fit();
+
+
+ }
