@@ -1,5 +1,13 @@
 {
 
+	"widget_video_list":{
+		"tran1":"blur",
+	    "tran2":"bunce2"
+	},
+	"widget_video_list_2":{
+	    "tran1":"blur",
+	    "tran2":"bunce"
+	},
 	"ticker":{
 	    "tran1":"blur",
 	    "tran2":"up"
@@ -11,3 +19,5 @@
 
 
 }
+
+
