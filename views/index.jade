@@ -18,7 +18,7 @@ block content
             p agregar otra cosa
             input(type="text", value='ktal')
             p de que tipo?
-            select#country(onchange='cambioselect()')
+            select#tipo(onchange='cambioselect()')
                 each value, key in result
 
                     option(value="#{key}") #{key}

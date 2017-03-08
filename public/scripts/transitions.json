@@ -1,12 +1,12 @@
 {
 
 	"ticker":{
-	    "tran1":"Sentra",
-	    "tran2":"Maxima"
+	    "tran1":"blur",
+	    "tran2":"up"
 	},
 	"fb":{
-		"tran1":"Taurus",
-	    "tran2":"Escort"
+		"tran1":"blur",
+	    "tran2":"down"
 	}
 
 

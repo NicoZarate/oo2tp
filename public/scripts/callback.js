@@ -194,7 +194,7 @@
 
 
 function cambioselect() {
-    var x = document.getElementById("country").value;
+    var x = document.getElementById("tipo").value;
 
     trans=traerTrans();
 
@@ -209,22 +209,27 @@ function cambioselect() {
     console.log(json);
 
 
-    switch (x)
-        {
-        case "fb" :
-            document.getElementById("city").options[0]=new Option("Select transition","");
-            document.getElementById("city").options[1]=new Option("OPEN","open");
-            document.getElementById("city").options[2]=new Option("DELIVERED","delivered");
-            break;
-        case "ticker" :
-            document.getElementById("city").options[0]=new Option("Select status","");
-            document.getElementById("city").options[1]=new Option("OPEN","open");
-            document.getElementById("city").options[2]=new Option("DELIVERED","delivered");
-            document.getElementById("city").options[3]=new Option("SHIPPED","shipped");
-            break;
-        }
-        return true;
-    }
+
+for (var key in json){
+
+  if (key==x){
+
+    var value = json[key].tran1;
+    var value2 = json[key].tran2;
+    console.log(key + ": " + value);
+    console.log(key + ": " + value2);
+
+    document.getElementById("city").options[0]=new Option("Select transition","");
+    document.getElementById("city").options[1]=new Option(value,value);
+    document.getElementById("city").options[2]=new Option(value2,value2);
+
+  }
+    
+}
+
+
+
+}
 
 
 function traerTrans(){
