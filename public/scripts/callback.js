@@ -19,9 +19,14 @@
     showMajorLabels:false,
 
     onAdd: function (item, callback) {
-      jQuery.noConflict();
-      
 
+      
+      
+      document.getElementById("start").value = item.start;
+      document.getElementById("end").value = item.end;
+
+
+      jQuery.noConflict();
       $('#myModal').modal('show');
     },
 
@@ -192,6 +197,8 @@
       return str;
   }
 
+  //-------------------- SUPER SELECT DINAMICO  -----------------------------------
+
 
 function cambioselect() {
     var x = document.getElementById("tipo").value;
@@ -201,31 +208,29 @@ function cambioselect() {
     var json = JSON.parse(trans);
 
 
+    for (var key in json){
 
-// ACA KIERO AGARRAR EL JSON PARA DSPS MOSTRAR LAS OPTIONS
+      if (key==x){
 
-    console.log(trans);
+        var value = json[key].tran1;
+        var value2 = json[key].tran2;
+        console.log(key + ": " + value);
+        console.log(key + ": " + value2);
 
-    console.log(json);
+        document.getElementById("tran1").options[0]=new Option("Select transition 1","");
+        document.getElementById("tran1").options[1]=new Option(value,value);
+        document.getElementById("tran1").options[2]=new Option(value2,value2);
+
+
+        document.getElementById("tran2").options[0]=new Option("Select transition 2","");
+        document.getElementById("tran2").options[1]=new Option(value,value);
+        document.getElementById("tran2").options[2]=new Option(value2,value2);
 
 
 
-for (var key in json){
-
-  if (key==x){
-
-    var value = json[key].tran1;
-    var value2 = json[key].tran2;
-    console.log(key + ": " + value);
-    console.log(key + ": " + value2);
-
-    document.getElementById("city").options[0]=new Option("Select transition","");
-    document.getElementById("city").options[1]=new Option(value,value);
-    document.getElementById("city").options[2]=new Option(value2,value2);
-
-  }
-    
-}
+      }
+        
+    }
 
 
 
@@ -240,18 +245,27 @@ function traerTrans(){
           }).responseText;
       return jsonData;
 
- } 
+ }
+
+   function guardar(){
+
+    var nombre = document.getElementById("nombre").value;
+    var tipo = document.getElementById("tipo").value;
+    var start = document.getElementById("start").value;
+    var end = document.getElementById("end").value;
+    var tran1 = document.getElementById("tran1").value;
+    var tran2 = document.getElementById("tran2").value;
 
 
- //---------------------------------- ejemplo para gabi----------------------
- function agregarJson(aJson){
-     var ejemplo = {"start":22,
+    var ejemplo = {
+       "start":22,
        "end":25,
-       "widget_id":"ticker",
-       "transition_in":"down",
-       "transition_out":"down",
-       "content":"ticker"
+       "widget_id": tipo,
+       "transition_in": tran1,
+       "transition_out": tran2,
+       "content": nombre
      };
+
      var data = items.get({
       type: {
         start: 'ISODate',
@@ -259,11 +273,15 @@ function traerTrans(){
       }
     });
 
+     console.log(ejemplo);
+
      data.push(ejemplo);
-     alert(data);
+
      items.clear();
-    items.add(data);
-    timeline.fit();
+     items.add(data);
+     timeline.fit();
 
 
- }
+     $('#myModal').modal('hide');
+
+  }
