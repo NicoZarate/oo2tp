@@ -7,12 +7,10 @@ router.get('/', function(req, res, next) {
   fs.readFile('./public/model_widgets.json', 'utf8', function (err, data) {
         var tipos = JSON.parse(data);
 
-        fs.readFile('./public/transitions.json', 'utf8', function (err, data2) {
-        	var trans = JSON.parse(data2);
 
         	console.log(tipos);
-        	res.render('index', { title : 'Main page', result : tipos, trans : trans });
-        });
+        	res.render('index', { title : 'Main page', result : tipos });
+
   });
     
 });

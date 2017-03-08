@@ -5,23 +5,6 @@
   var items = new vis.DataSet(evalledData);
 
 
-$(".country").change(function()
-{
-var id=$(this).val();
-var dataString = 'id='+ id;
-$.ajax
-({
-type: "POST",
-url: "ajax_city.php",
-data: dataString,
-cache: false,
-success: function(html)
-{
-$(".city").html(html);
-} 
-});
-
-});
   
 
 
@@ -210,3 +193,46 @@ $(".city").html(html);
   }
 
 
+function cambioselect() {
+    var x = document.getElementById("country").value;
+
+    trans=traerTrans();
+
+    var json = JSON.parse(trans);
+
+
+
+// ACA KIERO AGARRAR EL JSON PARA DSPS MOSTRAR LAS OPTIONS
+
+    console.log(trans);
+
+    console.log(json);
+
+
+    switch (x)
+        {
+        case "fb" :
+            document.getElementById("city").options[0]=new Option("Select transition","");
+            document.getElementById("city").options[1]=new Option("OPEN","open");
+            document.getElementById("city").options[2]=new Option("DELIVERED","delivered");
+            break;
+        case "ticker" :
+            document.getElementById("city").options[0]=new Option("Select status","");
+            document.getElementById("city").options[1]=new Option("OPEN","open");
+            document.getElementById("city").options[2]=new Option("DELIVERED","delivered");
+            document.getElementById("city").options[3]=new Option("SHIPPED","shipped");
+            break;
+        }
+        return true;
+    }
+
+
+function traerTrans(){
+       var jsonData = $.ajax({
+          url: "./scripts/transitions.json",
+          dataType: "json",
+          async: false
+          }).responseText;
+      return jsonData;
+
+ } 

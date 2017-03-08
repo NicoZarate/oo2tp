@@ -8,6 +8,9 @@
   	$('#myModal2').modal('show');
   }
 */
+
+
+
   function guardar(){
-  	
+
   }
