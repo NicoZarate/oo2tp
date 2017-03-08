@@ -273,7 +273,6 @@ function traerTrans(){
       }
     });
 
-     console.log(ejemplo);
 
      data.push(ejemplo);
 
