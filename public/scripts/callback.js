@@ -247,6 +247,17 @@ function traerTrans(){
 
  }
 
+
+function versiguardar() {
+
+            var nom = $("#nombre").val();
+            if (nom != "") {
+                guardar();
+            }
+
+    }
+
+
    function guardar(){
 
     var nombre = document.getElementById("nombre").value;
