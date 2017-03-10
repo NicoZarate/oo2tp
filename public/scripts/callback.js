@@ -28,6 +28,7 @@
 
       jQuery.noConflict();
       $('#myModal').modal('show');
+
     },
 
     onMove: function (item, callback) {
@@ -54,7 +55,7 @@
     },
 
     onUpdate: function (item, callback) {
-      prettyPrompt('Update item', 'Edit items text:', item.content, function (value) {
+/*      prettyPrompt('Update item', 'Edit items text:', item.content, function (value) {
         if (value) {
           item.content = value;
           callback(item); // send back adjusted item
@@ -62,7 +63,18 @@
         else {
           callback(null); // cancel updating the item
         }
-      });
+      });*/
+
+
+      document.getElementById("nombreup").value = item.content;
+
+      //document.getElementById("tran1up").value = "ola";
+      //document.getElementById("tran2up").value = "oliz";
+
+      jQuery.noConflict();
+      $('#modalupdate').modal('show');
+
+
     },
 
     onRemove: function (item, callback) {
@@ -191,6 +203,8 @@
   }
 
   //----------------------------------------end-----------------------------------
+
+
   function getMilliseconds(aDate){
       var str = JSON.stringify(aDate);
       str = Number(str.slice(-5,-2));

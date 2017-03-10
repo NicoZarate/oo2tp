@@ -42,6 +42,47 @@ block content
             button.btn.btn-default(type='button', onclick='versiguardar()') Guardar
     
 
+
+    #modalupdate.modal.fade(role='dialog')
+      .modal-dialog
+        // Modal content
+        .modal-content
+          .modal-header
+            button.close(type='button', data-dismiss='modal') ×
+            h4.modal-title Editar Item
+          .modal-body
+
+            p Edit name
+
+            input#start(type="hidden" name="start" value="#{start}")
+            input#end(type="hidden" name="end" value="#{end}")
+            
+            input#nombreup(required, data-error='Please fill this field...', type="text", value='')
+
+            p de que tipo?
+            select#tipo(onchange='cambioselect()')
+                option(value="") -- Select Type --
+                option(value='1' selected='selected') Whatever
+                each value, key in result
+
+                    option(value="#{key}") #{key}
+            
+            br
+            p Las transiciones disponibles son:
+
+
+            select#tran1
+
+                option
+            br
+            select#tran2
+
+                option
+
+          .modal-footer
+            button.btn.btn-default(type='button', onclick='versiguardar()') Guardar
+    
+
     .jumbotron
         .container
             h1 Look at these timelines!
