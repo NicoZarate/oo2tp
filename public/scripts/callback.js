@@ -68,7 +68,11 @@
 
       document.getElementById("nombreup").value = item.content;
 
-      //document.getElementById("tran1up").value = "ola";
+      document.getElementById("tran1up").options[0]=new Option(item.transition_in, item.transition_in);
+
+      document.getElementById("tran2up").options[0]=new Option(item.transition_out, item.transition_out);
+
+      //document.getElementById("tran1up").value = item.transition_in;
       //document.getElementById("tran2up").value = "oliz";
 
       jQuery.noConflict();
