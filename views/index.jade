@@ -58,18 +58,16 @@ block content
             input#end(type="hidden" name="end" value="#{end}")
             
             input#nombreup(required, data-error='Please fill this field...', type="text", value='')
-            
-            p de que tipo?
-            select#tipo(onchange='cambioselect()')
-                option(value="") -- Select Type --
-                option(value='1' selected='selected') Whatever
-                each value, key in result
+            p Este elemento tiene las siguientes transiciones
+            p transicion 1:
+            input#tran1uptiene(type="text", value='')
 
-                    option(value="#{key}") #{key}
-            
-            br
+            p transicion 2:
+
+            input#tran2uptiene(type="text", value='')
+
+
             p Las transiciones disponibles son:
-
 
             select#tran1up
 

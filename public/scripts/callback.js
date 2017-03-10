@@ -68,9 +68,41 @@
 
       document.getElementById("nombreup").value = item.content;
 
-      document.getElementById("tran1up").options[0]=new Option(item.transition_in, item.transition_in);
+      document.getElementById("tran1uptiene").value= item.transition_in;
 
-      document.getElementById("tran2up").options[0]=new Option(item.transition_out, item.transition_out);
+      document.getElementById("tran2uptiene").value= item.transition_out;
+
+      var x = item.widget_id;
+      console.log(x);
+
+      trans=traerTrans();
+
+      var json = JSON.parse(trans);
+
+
+      for (var key in json){
+
+        if (key==x){
+
+          var value = json[key].tran1;
+          var value2 = json[key].tran2;
+          console.log(key + ": " + value);
+          console.log(key + ": " + value2);
+
+          document.getElementById("tran1up").options[0]=new Option("Select transition 1","");
+          document.getElementById("tran1up").options[1]=new Option(value,value);
+          document.getElementById("tran1up").options[2]=new Option(value2,value2);
+
+
+          document.getElementById("tran2up").options[0]=new Option("Select transition 2","");
+          document.getElementById("tran2up").options[1]=new Option(value,value);
+          document.getElementById("tran2up").options[2]=new Option(value2,value2);
+
+
+
+        }
+
+
 
       //document.getElementById("tran1up").value = item.transition_in;
       //document.getElementById("tran2up").value = "oliz";
@@ -79,7 +111,8 @@
       $('#modalupdate').modal('show');
 
 
-    },
+    }
+  },
 
     onRemove: function (item, callback) {
       prettyConfirm('Remove item', 'Do you really want to remove item ' + item.content + '?', function (ok) {
