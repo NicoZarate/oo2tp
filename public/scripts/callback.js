@@ -155,16 +155,43 @@
                 item.transition_out=tran2;
 
               }
+
+
               $('#modalupdate').modal('hide');
-              callback(item);
+
+              console.log(item.id);
+
+              items.remove(item.id);
+
+              //items.update(item);
+
+              
+
+              var data = items.get({
+                type: {
+                  start: 'ISODate',
+                  end: 'ISODate'
+                }
+              });
+
+             items.clear();
+             items.add(item);
+             timeline.fit();
+
+
+
+
+              //callback(item);
               
 
               
                       
-        }else{
-          $('#modalupdate').modal('hide');
-          callback(null);
         }
+
+        //else{
+       //   $('#modalupdate').modal('hide');
+          //callback(null);
+      //  }
 
           
       });
