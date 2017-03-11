@@ -54,17 +54,19 @@ block content
 
             p Edit name
 
-            input#start(type="hidden" name="start" value="#{start}")
+            input#itemup(type="hidden" name="itemup" value="#{itemup}")
             input#end(type="hidden" name="end" value="#{end}")
             
             input#nombreup(required, data-error='Please fill this field...', type="text", value='')
             p Este elemento tiene las siguientes transiciones
+            
             p transicion 1:
-            input#tran1uptiene(type="text", value='')
+
+            p#tran1uptiene
 
             p transicion 2:
 
-            input#tran2uptiene(type="text", value='')
+            p#tran2uptiene
 
 
             p Las transiciones disponibles son:
@@ -78,7 +80,7 @@ block content
                 option
 
           .modal-footer
-            button.btn.btn-default(type='button', onclick='versiguardar()') Guardar
+            button.btn.btn-default(type='button', onclick='versiupdetear()') Update
     
 
     .jumbotron

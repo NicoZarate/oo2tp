@@ -66,11 +66,13 @@
       });*/
 
 
+      document.getElementById("itemup").value = item;
+
       document.getElementById("nombreup").value = item.content;
 
-      document.getElementById("tran1uptiene").value= item.transition_in;
+      document.getElementById("tran1uptiene").innerHTML= item.transition_in;
 
-      document.getElementById("tran2uptiene").value= item.transition_out;
+      document.getElementById("tran2uptiene").innerHTML= item.transition_out;
 
       var x = item.widget_id;
       console.log(x);
@@ -344,5 +346,88 @@ function versiguardar() {
 
 
      $('#myModal').modal('hide');
+
+  }
+
+  function versiupdetear(){
+
+    var nom = $("#nombreup").val();
+    var t1= $("tran1up");
+    var t2=$("tran2up");
+
+            if (nom != "") {
+              if (t1!="Select transition 1" && t2!="Select transition 2"){
+                updateitem();
+              }
+              else{
+                updatesintrans();
+              }
+                
+            }
+
+  }
+
+  function updateitem(){
+
+
+    var item = document.getElementById("itemup");
+
+    console.log("item");
+
+    var nombre = document.getElementById("nombreup").value;
+
+    var tran1 = document.getElementById("tran1up").innerHTML;
+    var tran2 = document.getElementById("tran2up").innerHTML;
+
+
+    item.content=nombre;
+
+    item.transition_in=tran1;
+    item.transition_out=tran2;
+
+
+    //kiero recargar la linea :(
+
+    //timeline.refresh();
+
+     $('#modalupdate').modal('hide');
+
+  }
+
+  function updatesintrans(){
+
+
+    var item = document.getElementById("itemup");
+
+    console.log("item");
+
+    var nombre = document.getElementById("nombreup").value;
+
+    var tran1 = document.getElementById("tran1uptiene").innerHTML;
+    var tran2 = document.getElementById("tran2uptiene").innerHTML;
+
+
+    item.content=nombre;
+
+    item.transition_in=tran1;
+    item.transition_out=tran2;
+
+
+    // esta parte no kreo ke vasha
+
+    var data = items.get({
+      type: {
+        start: 'ISODate',
+        end: 'ISODate'
+      }
+    });
+
+
+     items.clear();
+     items.add(data);
+     timeline.fit();
+
+     $('#modalupdate').modal('hide');
+
 
   }
