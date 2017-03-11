@@ -5,8 +5,6 @@
   var items = new vis.DataSet(evalledData);
 
 
-  
-
 
 
 
@@ -65,55 +63,113 @@
         }
       });*/
 
+      jQuery.noConflict();
 
-      document.getElementById("itemup").value = item;
+      $('#modalupdate').on('show.bs.modal', function (e) {
+        
 
-      document.getElementById("nombreup").value = item.content;
+        document.getElementById("nombreup").value = item.content;
 
-      document.getElementById("tran1uptiene").innerHTML= item.transition_in;
+        document.getElementById("tran1uptiene").innerHTML= item.transition_in;
 
-      document.getElementById("tran2uptiene").innerHTML= item.transition_out;
+        document.getElementById("tran2uptiene").innerHTML= item.transition_out;
 
-      var x = item.widget_id;
-      console.log(x);
+        var x = item.widget_id;
 
-      trans=traerTrans();
+        trans=traerTrans();
 
-      var json = JSON.parse(trans);
-
-
-      for (var key in json){
-
-        if (key==x){
-
-          var value = json[key].tran1;
-          var value2 = json[key].tran2;
-          console.log(key + ": " + value);
-          console.log(key + ": " + value2);
-
-          document.getElementById("tran1up").options[0]=new Option("Select transition 1","");
-          document.getElementById("tran1up").options[1]=new Option(value,value);
-          document.getElementById("tran1up").options[2]=new Option(value2,value2);
+        var json = JSON.parse(trans);
 
 
-          document.getElementById("tran2up").options[0]=new Option("Select transition 2","");
-          document.getElementById("tran2up").options[1]=new Option(value,value);
-          document.getElementById("tran2up").options[2]=new Option(value2,value2);
+        for (var key in json){
+
+          if (key==x){
+
+            var value = json[key].tran1;
+            var value2 = json[key].tran2;
+            console.log(key + ": " + value);
+            console.log(key + ": " + value2);
+
+            document.getElementById("tran1up").options[0]=new Option("Select transition 1","");
+            document.getElementById("tran1up").options[1]=new Option(value,value);
+            document.getElementById("tran1up").options[2]=new Option(value2,value2);
 
 
+            document.getElementById("tran2up").options[0]=new Option("Select transition 2","");
+            document.getElementById("tran2up").options[1]=new Option(value,value);
+            document.getElementById("tran2up").options[2]=new Option(value2,value2);
+
+
+
+          }
 
         }
+      });
 
 
-
-      //document.getElementById("tran1up").value = item.transition_in;
-      //document.getElementById("tran2up").value = "oliz";
-
-      jQuery.noConflict();
       $('#modalupdate').modal('show');
 
+      $('#modalForm').on('submit', function(e){
 
-    }
+
+        console.log('ola');
+
+          var nom = $("#nombreup").val();
+
+
+
+          var t1= $("tran1up");
+          var t2=$("tran2up");
+
+          if (nom != "") {
+              if (t1!="Select transition 1" && t2!="Select transition 2"){
+                
+                var nombre = document.getElementById("nombreup").value;
+
+                var tran1 = document.getElementById("tran1up").innerHTML;
+                var tran2 = document.getElementById("tran2up").innerHTML;
+
+
+                item.content=nombre;
+
+
+                console.log(item.content);
+
+                item.transition_in=tran1;
+                item.transition_out=tran2;
+
+                      
+              }
+              else{
+
+
+                var nombre = document.getElementById("nombreup").value;
+
+                var tran1 = document.getElementById("tran1uptiene").innerHTML;
+                var tran2 = document.getElementById("tran2uptiene").innerHTML;
+
+
+                item.content=nombre;
+
+                item.transition_in=tran1;
+                item.transition_out=tran2;
+
+              }
+              $('#modalupdate').modal('hide');
+              callback(item);
+              
+
+              
+                      
+        }else{
+          $('#modalupdate').modal('hide');
+          callback(null);
+        }
+
+          
+      });
+
+      
   },
 
     onRemove: function (item, callback) {
