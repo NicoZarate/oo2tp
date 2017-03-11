@@ -43,66 +43,46 @@ block content
     
 
     form#modalForm(name='modalForm')
-        #modalupdate.modal.fade(role='dialog')
+        #modalupdate.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
           .modal-dialog
             // Modal content
-            .modal-content
-              .modal-header
-                button.close(type='button', data-dismiss='modal') ×
-                h4.modal-title Editar Item
-              .modal-body
+            .modal-content.panel-primary
+                .modal-header.panel-heading
+                    button.close(type='button', data-dismiss='modal') ×
+                    h4.modal-title Editar Item
+                .modal-body
 
-                p Edit name
-                
-                input#nombreup(required, data-error='Please fill this field...', type="text", value='')
-                p Este elemento tiene las siguientes transiciones
+                    p Edit name
+                    
+                    input#nombreup(required, data-error='Please fill this field...', type="text", value='')
+                    p Este elemento tiene las siguientes transiciones
 
-                p transicion 1:
+                    p transicion 1:
 
-                p#tran1uptiene
+                    p#tran1uptiene
 
-                p transicion 2:
+                    p transicion 2:
 
-                p#tran2uptiene
+                    p#tran2uptiene
 
 
-                p Las transiciones disponibles son:
+                    p Las transiciones disponibles son:
 
-                select#tran1up
+                    select#tran1up
 
-                    option
-                br
-                select#tran2up
+                        option
+                    br
+                    select#tran2up
 
-                    option
+                        option
 
-              .modal-footer
-                button.btn.btn-default(type='button', onclick='versiupdetear()') Update
-                button.btn.btn-primary(type='submit') prueba
-
+                .modal-footer
+                    button.btn.btn-primary(type='submit') aktualisar
 
 
 
 
-    <a data-toggle="modal" href="#ola" class="btn btn-primary btn-lg">Launch demo modal</a>
 
-    form#modalForm(action='/echo/html/', method='POST', name='modalForm')
-      #ola.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
-        .modal-dialog
-          .modal-content.panel-warning
-            .modal-header.panel-heading
-              button.close(type='button', data-dismiss='modal', aria-hidden='true') ×
-              h4.modal-title Modal title
-            .modal-body
-              | ...
-            .modal-footer
-              button.btn.btn-default(type='button', data-dismiss='modal') Close
-              button.btn.btn-primary(type='submit') Save changes
-
-
-
-
-    
 
     .jumbotron
         .container
