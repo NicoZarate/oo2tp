@@ -18,10 +18,17 @@
 
     onAdd: function (item, callback) {
 
-      
-      
+     
       document.getElementById("start").value = item.start;
       document.getElementById("end").value = item.end;
+      $('#myModal').on('show.bs.modal', function (e) {
+       
+        document.getElementById("tipo").value= '';
+        document.getElementById("nombre").value = '';
+        document.getElementById("start").innerHTML= '';
+        document.getElementById("end").innerHTML= '';
+         $('#tipo').prop('disabled', false);
+      });
 
 
       jQuery.noConflict();
@@ -53,149 +60,23 @@
     },
 
     onUpdate: function (item, callback) {
-/*      prettyPrompt('Update item', 'Edit items text:', item.content, function (value) {
-        if (value) {
-          item.content = value;
-          callback(item); // send back adjusted item
-        }
-        else {
-          callback(null); // cancel updating the item
-        }
-      });*/
+         jQuery.noConflict();
+         // alert(JSON.stringify(item,widget_id).length);
+         $('#myModal').on('show.bs.modal', function (e) {
+       
+        document.getElementById("tipo").value= item.widget_id;
+        document.getElementById("nombre").value = item.content;
+        document.getElementById("start").innerHTML= item.transition_in;
+        document.getElementById("end").innerHTML= item.transition_out;
+         $('#tipo').prop('disabled', true);
+        cambioselect();
+      }
+      );
+       
+       $('#myModal').modal('show');
+     
 
-      jQuery.noConflict();
-
-      $('#modalupdate').on('show.bs.modal', function (e) {
-        
-
-        document.getElementById("nombreup").value = item.content;
-
-        document.getElementById("tran1uptiene").innerHTML= item.transition_in;
-
-        document.getElementById("tran2uptiene").innerHTML= item.transition_out;
-
-        var x = item.widget_id;
-
-        trans=traerTrans();
-
-        var json = JSON.parse(trans);
-
-
-        for (var key in json){
-
-          if (key==x){
-
-            var value = json[key].tran1;
-            var value2 = json[key].tran2;
-            console.log(key + ": " + value);
-            console.log(key + ": " + value2);
-
-            document.getElementById("tran1up").options[0]=new Option("Select transition 1","");
-            document.getElementById("tran1up").options[1]=new Option(value,value);
-            document.getElementById("tran1up").options[2]=new Option(value2,value2);
-
-
-            document.getElementById("tran2up").options[0]=new Option("Select transition 2","");
-            document.getElementById("tran2up").options[1]=new Option(value,value);
-            document.getElementById("tran2up").options[2]=new Option(value2,value2);
-
-
-
-          }
-
-        }
-      });
-
-
-      $('#modalupdate').modal('show');
-
-      $('#modalForm').on('submit', function(e){
-
-
-        console.log('ola');
-
-          var nom = $("#nombreup").val();
-
-
-
-          var t1= $("tran1up");
-          var t2=$("tran2up");
-
-          if (nom != "") {
-              if (t1!="Select transition 1" && t2!="Select transition 2"){
-                
-                var nombre = document.getElementById("nombreup").value;
-
-                var tran1 = document.getElementById("tran1up").innerHTML;
-                var tran2 = document.getElementById("tran2up").innerHTML;
-
-
-                item.content=nombre;
-
-
-                console.log(item.content);
-
-                item.transition_in=tran1;
-                item.transition_out=tran2;
-
-                      
-              }
-              else{
-
-
-                var nombre = document.getElementById("nombreup").value;
-
-                var tran1 = document.getElementById("tran1uptiene").innerHTML;
-                var tran2 = document.getElementById("tran2uptiene").innerHTML;
-
-
-                item.content=nombre;
-
-                item.transition_in=tran1;
-                item.transition_out=tran2;
-
-              }
-
-
-              $('#modalupdate').modal('hide');
-
-              console.log(item.id);
-
-              items.remove(item.id);
-
-              //items.update(item);
-
-              
-
-              var data = items.get({
-                type: {
-                  start: 'ISODate',
-                  end: 'ISODate'
-                }
-              });
-
-             items.clear();
-             items.add(item);
-             timeline.fit();
-
-
-
-
-              //callback(item);
-              
-
-              
-                      
-        }
-
-        //else{
-       //   $('#modalupdate').modal('hide');
-          //callback(null);
-      //  }
-
-          
-      });
-
+     
       
   },
 
@@ -402,7 +283,6 @@ function versiguardar() {
     var end = document.getElementById("end").value;
     var tran1 = document.getElementById("tran1").value;
     var tran2 = document.getElementById("tran2").value;
-
 
     var ejemplo = {
        "start":22,
