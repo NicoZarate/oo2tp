@@ -28,6 +28,7 @@
         document.getElementById("start").innerHTML= '';
         document.getElementById("end").innerHTML= '';
          $('#tipo').prop('disabled', false);
+          cambioselect();
       });
 
 
