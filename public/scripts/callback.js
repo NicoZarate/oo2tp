@@ -1,9 +1,7 @@
 
   var evalledData = traerJsonParaVis();
-  //var btnLoad = document.getElementById('load');
-  //var btnSave = document.getElementById('save');
   var items = new vis.DataSet(evalledData);
-
+  var global;
 
 
 
@@ -17,20 +15,6 @@
     showMajorLabels:false,
 
     onAdd: function (item, callback) {
-
-     
-      document.getElementById("start").value = item.start;
-      document.getElementById("end").value = item.end;
-      $('#myModal').on('show.bs.modal', function (e) {
-       
-        document.getElementById("tipo").value= '';
-        document.getElementById("nombre").value = '';
-        document.getElementById("start").innerHTML= '';
-        document.getElementById("end").innerHTML= '';
-         $('#tipo').prop('disabled', false);
-          cambioselect();
-      });
-
 
       jQuery.noConflict();
       $('#myModal').modal('show');
@@ -61,22 +45,20 @@
     },
 
     onUpdate: function (item, callback) {
+         global=item;
          jQuery.noConflict();
-         // alert(JSON.stringify(item,widget_id).length);
-         $('#myModal').on('show.bs.modal', function (e) {
-       
-        document.getElementById("tipo").value= item.widget_id;
-        document.getElementById("nombre").value = item.content;
-        document.getElementById("start").innerHTML= item.transition_in;
-        document.getElementById("end").innerHTML= item.transition_out;
-         $('#tipo').prop('disabled', true);
-        cambioselect();
-      }
-      );
-       
-       $('#myModal').modal('show');
-     
+         $('#myUpModal').on('show.bs.modal', function (e) {
+              document.getElementById("tipoUp").value= item.widget_id;
+              document.getElementById("nombreUp").value = item.content;
+              document.getElementById("startUp").value= item.start;
+              document.getElementById("endUp").value= item.end;
+               $('#tipoUp').prop('disabled', true);
+              cambioselect("tipoUp","tran1Up","tran2Up");
 
+         
+        });
+       $('#myUpModal').modal('show');
+       
      
       
   },
@@ -218,9 +200,9 @@
   //-------------------- SUPER SELECT DINAMICO  -----------------------------------
 
 
-function cambioselect() {
-    var x = document.getElementById("tipo").value;
-
+function cambioselect(aType,tran1,tran2) {
+ // alert(aType);
+    var x = document.getElementById(aType).value;
     trans=traerTrans();
 
     var json = JSON.parse(trans);
@@ -235,14 +217,14 @@ function cambioselect() {
         console.log(key + ": " + value);
         console.log(key + ": " + value2);
 
-        document.getElementById("tran1").options[0]=new Option("Select transition 1","");
-        document.getElementById("tran1").options[1]=new Option(value,value);
-        document.getElementById("tran1").options[2]=new Option(value2,value2);
+        document.getElementById(tran1).options[0]=new Option("Select transition 1","");
+        document.getElementById(tran1).options[1]=new Option(value,value);
+        document.getElementById(tran1).options[2]=new Option(value2,value2);
 
 
-        document.getElementById("tran2").options[0]=new Option("Select transition 2","");
-        document.getElementById("tran2").options[1]=new Option(value,value);
-        document.getElementById("tran2").options[2]=new Option(value2,value2);
+        document.getElementById(tran2).options[0]=new Option("Select transition 2","");
+        document.getElementById(tran2).options[1]=new Option(value,value);
+        document.getElementById(tran2).options[2]=new Option(value2,value2);
 
 
 
@@ -286,8 +268,8 @@ function versiguardar() {
     var tran2 = document.getElementById("tran2").value;
 
     var ejemplo = {
-       "start":22,
-       "end":25,
+       "start":start,
+       "end":end,
        "widget_id": tipo,
        "transition_in": tran1,
        "transition_out": tran2,
@@ -311,4 +293,20 @@ function versiguardar() {
 
      $('#myModal').modal('hide');
 
+  }
+
+  function changeItem(){
+    global.content = document.getElementById("nombreUp").value;
+    global.start = Number(document.getElementById("startUp").value);
+    global.end = Number(document.getElementById("endUp").value);
+    global.transition_in = document.getElementById("tran1Up").value;
+    global.transition_out = document.getElementById("tran2Up").value;
+    alert(global.content);
+    items.update({id:global.id,end:global.end, 
+          start: global.start, 
+          content: global.content, 
+          transition_in: global.transition_in, 
+          transition_out: global.transition_out});
+   global = null;
+    $('#myUpModal').modal('hide');
   }
