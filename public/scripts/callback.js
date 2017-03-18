@@ -53,10 +53,12 @@
               document.getElementById("nombreUp").value = item.content;
               document.getElementById("startUp").value= item.start;
               document.getElementById("endUp").value= item.end;
-              document.getElementById("tranIn").innerHTML= item.transition_in;
-              document.getElementById("tranOut").innerHTML= item.transition_out;
+             // document.getElementById("tranIn").innerHTML= item.transition_in;
+             // document.getElementById("tranOut").innerHTML= item.transition_out;
               $('#tipoUp').prop('disabled', true);
               cambioselect("tipoUp","tran1Up","tran2Up");
+              document.getElementById("tran1Up").value= item.transition_in;
+              document.getElementById("tran2Up").value= item.transition_out;
 
          
         });
