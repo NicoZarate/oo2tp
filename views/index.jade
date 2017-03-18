@@ -4,96 +4,117 @@ extends layout
 
 block content
 
-    #myModal.modal.fade(role='dialog')
+    #myModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
       .modal-dialog
         // Modal content
-        .modal-content
-          .modal-header
+        .modal-content.panel-primary
+          .modal-header.panel-heading
             button.close(type='button', data-dismiss='modal') ×
             h4.modal-title Agregar Item
           .modal-body
 
-            p agregar cosa
-             p numeros
-            input#start(type="number",name="start",value="", required)
-            br
-            input#end(type="number",name="end",value="", required)
-            br
-            p nombre
+            .form-group
+                label(for='tipo') Tipo del evento:
+                select#tipo.form-control(onchange='cambioselect("tipo","tran1","tran2")', required)
+                    option(value="") -- Select Type --
+                    each value, key in result
+
+                        option(value="#{key}") #{key}
+
+
+            .form-group
+                label(for='nombreUp') Nombre del evento:
+                input#nombre.form-control(required, data-error='Please fill this field...', type="text", value='')
+
+            .form-group
+                label(for='tran1') Las transiciones In disponibles son:
+                select#tran1.form-control
+                    option
+
+            .form-group
+                label(for='tran2') Las transiciones Out disponibles son:
+                select#tran2.form-control
+                    option
+
+            .form-group
+                label(for='start') Seleccione el inicio del evento:
+                input#start.form-control(type="number", name="start", value="", required)
+
+            .form-group
+                label(for='end') Seleccione el fin del evento:
+                input#end.form-control(type="number", name="end", value="", required)
             
-            input#nombre(required, data-error='Please fill this field...', type="text", value='')
-
-            p de que tipo?
-            select#tipo(onchange='cambioselect("tipo","tran1","tran2")', required)
-                option(value="") -- Select Type --
-                each value, key in result
-
-                    option(value="#{key}") #{key}
-            
-            br
-            p Las transiciones disponibles son:
-
-
-            select#tran1
-
-                option
-            br
-            select#tran2
-
-                option
 
           .modal-footer
-            button.btn.btn-default(type='button', onclick='versiguardar()') Guardar
+            button.btn.btn-primary(type='button', onclick='versiguardar()') Guardar
 
-     #myUpModal.modal.fade(role='dialog')
+
+
+     #myUpModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
       .modal-dialog
         // Modal content
-        .modal-content
-          .modal-header
+        .modal-content.panel-primary
+          .modal-header.panel-heading
             button.close(type='button', data-dismiss='modal') ×
             h4.modal-title Modificar Item
           .modal-body
 
-            p agregar cosa
-            p numeros
-            input#startUp(type="number",name="start",value="", required)
-            br
-            input#endUp(type="number",name="end",value="", required)
-            br
-            p nombre
-            input#nombreUp(required, data-error='Please fill this field...', type="text", value='')
+            input#tipoUp(onchange='cambioselect("tipoUp","tran1Up","tran2Up")', type="hidden", required)
 
-            p de que tipo?
-            select#tipoUp(onchange='cambioselect("tipoUp","tran1Up","tran2Up")', required)
-                option(value="") -- Select Type --
-                each value, key in result
+            h5
+                span El tipo del evento es: 
+                
+                span#tipoUp1(onchange='cambioselect("tipoUp","tran1Up","tran2Up")', required)
 
-                    option(value="#{key}") #{key}
+            .form-group
+                label(for='nombreUp') Nombre del evento:
+                input#nombreUp.form-control(required, data-error='Please fill this field...', type="text", value='')
+
+            .form-group
+                label(for='startUp') Seleccione el inicio del evento:
+                input#startUp.form-control(type="number",name="start",value="", required)
             
-            br
+            .form-group
+                label(for='endUp') Seleccione el fin del evento:
+                input#endUp.form-control(type="number",name="end",value="", required)
+
+            
+            .form-group
+                label(for='tranIn') La transición in actual es:
+                p#tranIn
+
+            .form-group
+                label(for='tranOut') La transición out actual es:
+                p#tranOut
+
+
             p Las transiciones disponibles son:
 
+            .form-group
+                label(for='tran1Up') Seleccione una nueva transición In:
+                select#tran1Up.form-control
+                    option
 
-            select#tran1Up
+            .form-group
+                label(for='tran2Up') Seleccione una nueva transición Out:
+                select#tran2Up.form-control
+                    option
 
-                option
-            br
-            select#tran2Up
 
-                option
+
 
           .modal-footer
-            button.btn.btn-default(type='button', onclick='changeItem()') Guardar
+            button.btn.btn-primary(type='button', onclick='changeItem()') Actualizar
 
 
     .jumbotron
         .container
-            h1 Look at these timelines!
-            p model
+                h1 Event Timeline
+                p Click sobre la linea para agregar nuevos eventos
     .container
-        .buttons
-            input(#load type="button", value='↓ Load', onclick='loadData()')
-            input(#save type="button", value='↑ Save', onclick='saveData()')
-        #visualization        
+        .btn-group
+            button.btn.btn-primary(type="button", onclick='loadData()') ↓ Load
+            button.btn.btn-primary(type="button", onclick='saveData()') ↑ Save
+        #visualization.top        
         #log
         script(src='scripts/callback.js') 

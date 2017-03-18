@@ -21,7 +21,7 @@
 
     },
 
-    onMove: function (item, callback) {
+/*    onMove: function (item, callback) {
       var title = 'Do you really want to move the item to\n' +
           'start: ' + item.start + '\n' +
           'end: ' + item.end + '?';
@@ -42,17 +42,20 @@
       if (item.end   > max) item.end   = max;
 
       callback(item); // send back the (possibly) changed item
-    },
+    }, */
 
     onUpdate: function (item, callback) {
          global=item;
          jQuery.noConflict();
          $('#myUpModal').on('show.bs.modal', function (e) {
               document.getElementById("tipoUp").value= item.widget_id;
+              document.getElementById("tipoUp1").innerHTML= item.widget_id;
               document.getElementById("nombreUp").value = item.content;
               document.getElementById("startUp").value= item.start;
               document.getElementById("endUp").value= item.end;
-               $('#tipoUp').prop('disabled', true);
+              document.getElementById("tranIn").innerHTML= item.transition_in;
+              document.getElementById("tranOut").innerHTML= item.transition_out;
+              $('#tipoUp').prop('disabled', true);
               cambioselect("tipoUp","tran1Up","tran2Up");
 
          
@@ -262,8 +265,8 @@ function versiguardar() {
 
     var nombre = document.getElementById("nombre").value;
     var tipo = document.getElementById("tipo").value;
-    var start = document.getElementById("start").value;
-    var end = document.getElementById("end").value;
+    var start = Number(document.getElementById("start").value);
+    var end = Number(document.getElementById("end").value);
     var tran1 = document.getElementById("tran1").value;
     var tran2 = document.getElementById("tran2").value;
 
@@ -301,7 +304,7 @@ function versiguardar() {
     global.end = Number(document.getElementById("endUp").value);
     global.transition_in = document.getElementById("tran1Up").value;
     global.transition_out = document.getElementById("tran2Up").value;
-    alert(global.content);
+    //alert(global.content);
     items.update({id:global.id,end:global.end, 
           start: global.start, 
           content: global.content, 
