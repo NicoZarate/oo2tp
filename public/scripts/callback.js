@@ -21,7 +21,8 @@
 
     },
 
-/*    onMove: function (item, callback) {
+    onMove: function (item, callback) {
+      /*
       var title = 'Do you really want to move the item to\n' +
           'start: ' + item.start + '\n' +
           'end: ' + item.end + '?';
@@ -34,15 +35,18 @@
           callback(null); // cancel editing item
         }
       });
+       */
     },
 
     onMoving: function (item, callback) {
+      /*
       if (item.start < min) item.start = min;
       if (item.start > max) item.start = max;
       if (item.end   > max) item.end   = max;
 
       callback(item); // send back the (possibly) changed item
-    }, */
+      */
+    }, 
 
     onUpdate: function (item, callback) {
          global=item;
