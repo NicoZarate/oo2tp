@@ -79,16 +79,13 @@ block content
                 input#endUp.form-control(type="number",name="end",value="", required)
 
 
-
-            p Las transiciones disponibles son:
-
             .form-group
-                label(for='tran1Up') Seleccione una nueva transición In:
+                label(for='tran1Up') Transición In:
                 select#tran1Up.form-control
                     option
 
             .form-group
-                label(for='tran2Up') Seleccione una nueva transición Out:
+                label(for='tran2Up') Transición Out:
                 select#tran2Up.form-control
                     option
 
@@ -109,4 +106,9 @@ block content
             button.btn.btn-primary(type="button", onclick='saveData()') ↑ Save
         #visualization.top        
         #log
+        .panel.panel-default.pany
+            .panel-heading Mini Tips
+            .panel-body
+                p Para guardar los eventos, presione Save
+                p Para cargar los eventos guardados, presione Load
         script(src='scripts/callback.js') 

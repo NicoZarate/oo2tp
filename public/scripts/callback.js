@@ -146,7 +146,7 @@
               "widget_id":item.widget_id,
               "transition_in":item.transition_in,
               "transition_out":item.transition_out,
-              "content":item.widget_id
+              "content":item.content
             };
             str= str + JSON.stringify(j);
             if(i < (myJsonVis.length -1) ){
@@ -187,7 +187,7 @@
       "widget_id":aJson.widget_id,
       "transition_in":aJson.transition_in,
       "transition_out":aJson.transition_out,
-      "content":aJson.widget_id
+      "content":aJson.content
      };
      array.push(j);
 
