@@ -1,6 +1,7 @@
-$('#loginForm').validate({
+jQuery(function ($) {
+	$('#loginForm').validate({
         rules: {
-            usuario: {
+            username: {
                 minlength: 3,
                 maxlength: 15,
                 required: true
@@ -26,5 +27,5 @@ $('#loginForm').validate({
                 error.insertAfter(element);
             }
         }
-        console.log('ola');
     });
+});
