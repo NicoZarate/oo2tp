@@ -46,4 +46,19 @@ function convertRequestInJson(aData){
     return json + '}';
 }
 
+
+router.post('/loginform', function(req, res, next) {
+  fs.readFile('./public/model_widgets.json', 'utf8', function (err, data) {
+        var tipos = JSON.parse(data);
+
+
+        	console.log(tipos);
+        	res.render('index', { title : 'Main page', result : tipos });
+
+  });
+    
+});
+
+
+
 module.exports = router;
