@@ -90,41 +90,39 @@ block content
             h4.modal-title Modificar Item
           .modal-body
 
-            input#tipoUp(onchange='cambioselect("tipoUp","tran1Up","tran2Up")', type="hidden", required)
+            form#upform(method='post' action="javascript:changeItem()")
 
-            h5
-                span El tipo del evento es: 
+                input#tipoUp(onchange='cambioselect("tipoUp","tran1Up","tran2Up")', type="hidden", required)
+
+                h5
+                    span El tipo del evento es: 
+                    
+                    span#tipoUp1(onchange='cambioselect("tipoUp","tran1Up","tran2Up")', required)
+
+                .form-group
+                    label(for='nombreUp') Nombre del evento:
+                    input#nombreUp.form-control(required, data-error='Please fill this field...', type="text", value='')
+
+                .form-group
+                    label(for='startUp') Seleccione el inicio del evento:
+                    input#startUp.form-control(type="number",name="start",value="", required)
                 
-                span#tipoUp1(onchange='cambioselect("tipoUp","tran1Up","tran2Up")', required)
-
-            .form-group
-                label(for='nombreUp') Nombre del evento:
-                input#nombreUp.form-control(required, data-error='Please fill this field...', type="text", value='')
-
-            .form-group
-                label(for='startUp') Seleccione el inicio del evento:
-                input#startUp.form-control(type="number",name="start",value="", required)
-            
-            .form-group
-                label(for='endUp') Seleccione el fin del evento:
-                input#endUp.form-control(type="number",name="end",value="", required)
+                .form-group
+                    label(for='endUp') Seleccione el fin del evento:
+                    input#endUp.form-control(type="number",name="end",value="", required)
 
 
-            .form-group
-                label(for='tran1Up') Transición In:
-                select#tran1Up.form-control
-                    option
+                .form-group
+                    label(for='tran1Up') Transición In:
+                    select#tran1Up.form-control
+                        option
 
-            .form-group
-                label(for='tran2Up') Transición Out:
-                select#tran2Up.form-control
-                    option
-
-
-
-
-          .modal-footer
-            button.btn.btn-primary(type='button', onclick='changeItem()') Actualizar
+                .form-group
+                    label(for='tran2Up') Transición Out:
+                    select#tran2Up.form-control
+                        option
+                .form-group
+                    button.btn.btn-primary(type='submit') Actualizar
 
 
     .jumbotron
