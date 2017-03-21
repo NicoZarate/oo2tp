@@ -16,7 +16,7 @@ block content
             h5.modal-title Login
           .modal-body
             // The form is placed inside the body of modal
-            form#loginForm.form-horizontal(method='post' action='loginform')
+            form#loginForm.form-horizontal(method='post' action='/loginform')
               .form-group
                 label.col-xs-3.control-label Username
                 .col-xs-5
@@ -44,40 +44,40 @@ block content
             h4.modal-title Agregar Item
           .modal-body
 
-            .form-group
-                label(for='tipo') Tipo del evento:
-                select#tipo.form-control(onchange='cambioselect("tipo","tran1","tran2")', required)
-                    option(value="") -- Select Type --
-                    each value, key in result
+            form#addform(method='post' action="javascript:guardar()")
+                .form-group
+                    label(for='tipo') Tipo del evento:
+                    select#tipo.form-control(onchange='cambioselect("tipo","tran1","tran2")', required)
+                        option(value="") -- Select Type --
+                        each value, key in result
+                            option(value="#{key}") #{key}
 
-                        option(value="#{key}") #{key}
 
+                .form-group
+                    label(for='nombre') Nombre del evento:
+                    input#nombre.form-control(name='nombre', required, data-error='Please fill this field...', type="text", value='')
 
-            .form-group
-                label(for='nombreUp') Nombre del evento:
-                input#nombre.form-control(required, data-error='Please fill this field...', type="text", value='')
+                .form-group
+                    label(for='tran1') Las transiciones In disponibles son:
+                    select#tran1.form-control
+                        option
 
-            .form-group
-                label(for='tran1') Las transiciones In disponibles son:
-                select#tran1.form-control
-                    option
+                .form-group
+                    label(for='tran2') Las transiciones Out disponibles son:
+                    select#tran2.form-control
+                        option
 
-            .form-group
-                label(for='tran2') Las transiciones Out disponibles son:
-                select#tran2.form-control
-                    option
+                .form-group
+                    label(for='start') Seleccione el inicio del evento:
+                    input#start.form-control(type="number", name="start", value="", required)
 
-            .form-group
-                label(for='start') Seleccione el inicio del evento:
-                input#start.form-control(type="number", name="start", value="", required)
+                .form-group
+                    label(for='end') Seleccione el fin del evento:
+                    input#end.form-control(type="number", name="end", value="", required)
+                
 
-            .form-group
-                label(for='end') Seleccione el fin del evento:
-                input#end.form-control(type="number", name="end", value="", required)
-            
-
-          .modal-footer
-            button.btn.btn-primary(type='button', onclick='versiguardar()') Guardar
+                .form-group
+                    button.btn.btn-primary(type='submit') Guardar
 
 
 
