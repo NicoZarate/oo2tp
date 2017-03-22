@@ -15,39 +15,22 @@
     showMajorLabels:false,
 
     onAdd: function (item, callback) {
+      $('#myModal').on('show.bs.modal', function (e) {
+              document.getElementById("tipo").value= '';
+              document.getElementById("nombre").value = '';
+              document.getElementById("start").value= '';
+              document.getElementById("end").value= '';
+              document.getElementById("tran1").value= '';
+              document.getElementById("tran2").value= '';
+
+         
+        });
 
       jQuery.noConflict();
       $('#myModal').modal('show');
 
     },
-
-    onMove: function (item, callback) {
-      /*
-      var title = 'Do you really want to move the item to\n' +
-          'start: ' + item.start + '\n' +
-          'end: ' + item.end + '?';
-
-      prettyConfirm('Move item', title, function (ok) {
-        if (ok) {
-          callback(item); // send back item as confirmation (can be changed)
-        }
-        else {
-          callback(null); // cancel editing item
-        }
-      });
-       */
-    },
-
-    onMoving: function (item, callback) {
-      /*
-      if (item.start < min) item.start = min;
-      if (item.start > max) item.start = max;
-      if (item.end   > max) item.end   = max;
-
-      callback(item); // send back the (possibly) changed item
-      */
-    }, 
-
+    
     onUpdate: function (item, callback) {
          global=item;
          jQuery.noConflict();
@@ -57,8 +40,6 @@
               document.getElementById("nombreUp").value = item.content;
               document.getElementById("startUp").value= item.start;
               document.getElementById("endUp").value= item.end;
-             // document.getElementById("tranIn").innerHTML= item.transition_in;
-             // document.getElementById("tranOut").innerHTML= item.transition_out;
               $('#tipoUp').prop('disabled', true);
               cambioselect("tipoUp","tran1Up","tran2Up");
               document.getElementById("tran1Up").value= item.transition_in;
@@ -71,6 +52,11 @@
      
       
   },
+   onMoving: function (item, callback) {
+     //no borrar
+   //para no movilizar olos eventos desde pantalla
+    
+    },
 
     onRemove: function (item, callback) {
       prettyConfirm('Remove item', 'Do you really want to remove item ' + item.content + '?', function (ok) {
@@ -90,11 +76,10 @@
   });
 
   function logEvent(event, properties) {
-    //var log = document.getElementById('log');
     var msg = document.createElement('div');
     msg.innerHTML = 'event=' + JSON.stringify(event) + ', ' +
         'properties=' + JSON.stringify(properties);
-    //log.firstChild ? log.insertBefore(msg, log.firstChild) : log.appendChild(msg);
+    
   }
 
   function prettyConfirm(title, text, callback) {
@@ -177,7 +162,13 @@
        var array = [];
        var str;
        $.each(myJson, function(i, item) {
+           if(item.content==undefined){
+              item.content=item.widget_id;
+              jsonInArrangement(item, array);
+          }else{
+
             jsonInArrangement(item, array);
+          }
 
        });
         return JSON.stringify(array);
