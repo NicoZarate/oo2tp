@@ -217,14 +217,12 @@ function cambioselect(aType,tran1,tran2) {
         console.log(key + ": " + value);
         console.log(key + ": " + value2);
 
-        document.getElementById(tran1).options[0]=new Option("Select transition 1","");
-        document.getElementById(tran1).options[1]=new Option(value,value);
-        document.getElementById(tran1).options[2]=new Option(value2,value2);
+        document.getElementById(tran1).options[0]=new Option(value,value);
+        document.getElementById(tran1).options[1]=new Option(value2,value2);
 
 
-        document.getElementById(tran2).options[0]=new Option("Select transition 2","");
-        document.getElementById(tran2).options[1]=new Option(value,value);
-        document.getElementById(tran2).options[2]=new Option(value2,value2);
+        document.getElementById(tran2).options[0]=new Option(value,value);
+        document.getElementById(tran2).options[1]=new Option(value2,value2);
 
 
 
