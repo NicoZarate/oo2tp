@@ -38,8 +38,14 @@
               document.getElementById("tipoUp").value= item.widget_id;
               document.getElementById("tipoUp1").innerHTML= item.widget_id;
               document.getElementById("nombreUp").value = item.content;
-              document.getElementById("startUp").value= item.start;
-              document.getElementById("endUp").value= item.end;
+              if(item.start instanceof Date){
+                document.getElementById("startUp").value= getMilliseconds(item.start);
+                document.getElementById("endUp").value= getMilliseconds(item.end);
+              }else{
+                 
+                 document.getElementById("startUp").value= item.start;
+                document.getElementById("endUp").value= item.end;
+            }
               $('#tipoUp').prop('disabled', true);
               cambioselect("tipoUp","tran1Up","tran2Up");
               document.getElementById("tran1Up").value= item.transition_in;

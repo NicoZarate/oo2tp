@@ -1,6 +1,8 @@
 
 
 jQuery(function ($) {
+    
+
 	$('#addform').validate({
         rules: {
             tipo: {
@@ -19,9 +21,12 @@ jQuery(function ($) {
                 required: true
             },
             end: {
-                required: true
+                required: true,
+
             }
+
         },
+        
         highlight: function(element) {
             $(element).closest('.form-group').addClass('has-error');
         },
