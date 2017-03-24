@@ -1,28 +1,20 @@
-Trabajo Final De Orientación a Objetos 2
-
-Integrantes:
-
-Zárate, Nicolás
-Rodriguez, Gabriela
-
-Objetivo:
-
-Realización de un trabajo para obtener la nota final de la materia. En dicho trabajo se aplicarán los conocimientos aprendidos durante la cursada de Orientación a Objetos 2, y se profundizarán con el uso de tecnologías específicas en las cuales se implementarán.
-
-Propuesta del docente:
-
-A través de pequeñas reuniones al estilo scrum, Arturo Zambrano nos propuso la realización de una aplicación web utilizando el framework Express para Node.js. La aplicación consta de una línea de tiempo en la cual se podrán visualizar distintos tipos de eventos a lo largo del tiempo, agregar nuevos eventos y modificar eventos existentes. Tales eventos cuentan con un tipo, nombre, momento de inicio, momento de fin, una transición de entrada y una transición de salida. Los eventos, sus características y posibles transiciones se encuentran detallados en archivos JSON entregados por el docente, los cuales fueron utilizados en la aplicación.
 
 
-Reporte sobre las situaciones afrontadas durante el desarrollo y toma de decisiones:
+// tener un json con los default values para agregar (el tipo de cosa,no el nombre) MODEL WIDGET
+// tener otro json para las transiciones y el id seria el nombre del default value
 
-Al inicio del proyecto, se iba a utilizar el framework SeaSide para desarrollar el trabajo final. Sin embargo, luego de investigar sobre este framework, nos dimos cuenta que se nos hacía muy engorroso el no poder utilizar GitHub como sistema de versionamiento de código ya que cada uno de los integrantes del equipo de desarrollo nos encontraríamos trabajando remotamente. Además, la poca documentación extraoficial del framework y su baja utilización nos redujo las expectativas sobre el mismo. Sumado a lo anterior, el entorno de desarrollo de Pharo tampoco nos terminaba de convencer, ya que estamos más acostumbrados a la utilización de editores de texto como Sublime. Por lo tanto, decidimos dar un giro hacia Node.js, que es ampliamente utilizado y con una gran comunidad activa.
-Luego de varias pruebas y acostumbrarnos un poco al lenguaje, Arturo Zambrano nos requirió una investigación sobre librerías que pudieran ayudarnos a modelar eventos en alguna especie de línea de tiempo. Realizamos una presentación con diapositivas a modo de recordatorio sobre las distintas APIS que encontramos y testeamos, y se las presentamos al docente justificando nuestra elección final. Entre las librerías analizadas se incluyen Bhive, HighCharts, TimelineJS y React Event Timeline. Sin embargo, la librería que más se ajustaba a nuestras necesidades y nos resultó más simple de utilizar, además de tener una amplia documentación oficial y muchos ejemplos, fue VisJS. VisJS es desarrollada por una organización llamada Almende y es open source. Cuenta con representaciones gráficas de líneas de tiempo, redes, gráficos 2D, gráficos 3D y DataSet. Luego de obtener la aprobación del docente ante esta librería, nosotros la utilizaremos con su funcionalidad de timeline para representar la línea de tiempo que albergará a los eventos.
-En las primeras reuniones que tuvimos, se estableció el hecho de tener varias líneas de tiempo sincronizadas, por lo que para realizar esto tuvimos que adentrarnos en el mundo de los eventos, y utilizar listeners para poder captar el instante en que una línea cambiaba, para poder reflejar ese cambio en las demás líneas. Los listeners que utilizamos en esta etapa fueron los de Google API, ya que encontramos varios ejemplos en la documentación oficial utilizando esta librería en combinación con VisJS, aunque también probamos utilizando los propios listeners de VisJS, pero tuvimos un déficit de performance comparado a la utilización de los listeners de Google (los de VisJS eran más lentos en plasmar los resultados actualizados por la sincronización de las líneas de tiempo). De todos modos, en reuniones posteriores se terminó decidiendo que habría solo una única línea de tiempo, por lo que estos listeners de Google para la sincronización de las líneas de tiempo fueron eliminados.
-En la última reunión se nos pidió la incorporación de 2 archivos JSON, uno conteniendo los tipos de eventos que se pueden incorporar a la línea de tiempo, y otro conteniendo las dos transiciones disponibles para cada uno de los tipos. Acá es donde empezó la parte "divertida", ya que para incorporar los JSON en los formularios de alta y modificación, tuvimos que hacer solicitudes AJAX para cargar en JSON desde el lado del cliente ante cambios dinámicos de los selects. También utilizamos las solicitudes AJAX para guardar los datos en la línea de tiempo con el botón "Save", y para traernos el JSON guardado con el botón "Load". Además, utilizamos una librería para la lectura y escritura de archivos llamada FS del lado del servidor, para poder cargar el JSON de los tipos y pasárselo al jade (nuestro html) para que lo pueda renderizar en las opciones de los forms. Sumado a lo anterior, tuvimos que incorporar varias funciones de conversión de JSON para poder llegar a un formato válido y entendible para VisJS. Todo lo detallado anteriormente fue puro google y prueba y error (y más errores que pruebas).
-Para el tema de los formularios, los ejemplos de VisJS utilizaban una librería muy linda y simple llamada SweetAlerts, el inconveniente es que, como su nombre lo indica, es una alert, y muy amablemente incorpora la funcionalidad de soportar un (1) input. Pero nosotros requeríamos varios campos para completar ante una inserción o modificación de un evento, por lo que después de un poco de google, nos decidimos a la incorporación de los modals de boostrap, especificados en el jade y levantados mediante Jquery.
-Finalmente, y tras los ajustes necesarios para terminar de incorporar al modal los selects dinámicos y poner las llamadas a las funciones javascripts en los lugares correspondientes del modal, incorporamos la librería Jquery Validator para validar los campos del modal y que no se cree un evento sin nombre, sin tipo, etc.
+//cada evento tiene un tipo (desde el select) y un nombre editable, junto con dos transiciones
 
-Conclusión:
 
-Ambos integrantes del grupo ampliamos enormemente nuestros conocimientos sobre javascript, AJAX, JQuery y demás mounstritos, a los que les veníamos escapando desde hace rato en otras materias como Proyecto de Software. La utilización de Express nos pareció muy similar a la de Rails, por lo que nos acostumbramos rápidamente. Sin embargo, si bien es un tema simple, el tema de definir correctamente las rutas nos llevó bastante tiempo y tuvimos muchos 404. La simplicidad y abstracción que nos da el framework es algo que ya tenemos incorporado como trivial, por lo que después de algunos videitos tutoriales le pudimos hacer frente fácilmente. Con la incorporación de tantas librerías, tuvimos que leer detenidamente los manuales de cada una (especialmente la de VisJS), para ver qué métodos usar y hasta dónde podíamos modificar o adaptar la funcionalidad planteada en la documentación para nuestro caso particular. Contamos con la suerte de elegir un lenguaje con muchísima documentación y el respaldo de una gran comunidad, por lo que a cada cosa que googleabamos eventualmente le encontrábamos la respuesta, y sino con alguna respuesta genérica y algo de ingenio nos la arreglamos para resolver el problema en cuestión. Ambos integrantes del grupo venimos trabajando en equipo en varias materias, así que la coordinación y comunicación durante el trabajo final no tuvo complicaciones de ningún tipo. Ambos integrantes acordamos que el trabajo final de Orientación a Objetos 2 fue muy productivo en cuanto al uso de tecnologías en las que nunca habíamos trabajado, y que seguramente nos sirvan para incorporar en un futuro cercano a nuevos proyectos o materias, ya que son ampliamente usadas en diversos campos.
+// Model.json
+// TRANSICIONES.JSON
+
+// PERioDOS.JSON SERIA TODO EL GRAFICO
+
+
+// UNA SOLA LINEA
+
+//en el grafico se muestra el nombre y el tipo
+
+//documentar diferencias y similitudes entre vis y google /almende, metodos y wrappers, lo usa o hereda?
+// tuvimos ke kambiar algo? mejoras para hacerle a google para acceder a visjs???

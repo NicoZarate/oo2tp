@@ -106,6 +106,7 @@
     items.clear();
     items.add(evalledData);
     timeline.fit();
+    swal("Loaded!", "You loaded the timeline!", "success");
   }
 
   function saveData() {
@@ -125,6 +126,7 @@
         console.log(e);
       }
     });
+    swal("Saved!", "You saved the timeline!", "success");
   }
   function reverseJsonForvis(myJsonVis){
       var str= '';

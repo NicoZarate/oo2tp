@@ -23,14 +23,7 @@ router.post('/save', function (request, response) {
 });
 
 });
-router.post('/loginform', function(req, res, next) {
-   fs.readFile('./public/model_widgets.json', 'utf8', function (err, data) {
-        var tipos = JSON.parse(data);
-        res.render('index', { title : 'Main page', result : tipos });
 
-  });
-    
-});
 
 function convertRequestInJson(aData){
     var json = '{';
