@@ -1,3 +1,8 @@
+$.validator.addMethod("greaterThan",
+    function(value, max, min){
+        return parseInt(value) > parseInt($(min).val());
+    }, "Max must be greater than start"
+);
 
 
 jQuery(function ($) {
@@ -19,7 +24,7 @@ jQuery(function ($) {
                 required: true
             },
             end: {
-                required: true
+                greaterThan: '#start'
             }
         },
         highlight: function(element) {
@@ -56,7 +61,7 @@ jQuery(function ($) {
                 required: true
             },
             endUp: {
-                required: true
+                greaterThan: '#startUp'
             }
         },
         highlight: function(element) {
