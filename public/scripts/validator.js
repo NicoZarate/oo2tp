@@ -6,6 +6,8 @@ $.validator.addMethod("greaterThan",
 
 
 jQuery(function ($) {
+    
+
 	$('#addform').validate({
         rules: {
             tipo: {
@@ -26,7 +28,9 @@ jQuery(function ($) {
             end: {
                 greaterThan: '#start'
             }
+
         },
+        
         highlight: function(element) {
             $(element).closest('.form-group').addClass('has-error');
         },
