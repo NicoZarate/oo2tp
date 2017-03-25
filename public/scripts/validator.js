@@ -1,14 +1,10 @@
-$.validator.addMethod("greaterThan",
-    function(value, max, min){
-        return parseInt(value) > parseInt($(min).val());
-    }, "Max must be greater than start"
-);
+jQuery(document).ready(function ($) {
 
+    $.validator.addMethod('gt', function (value, element, param) {
+        return this.optional(element) || parseInt(value) > parseInt($(param).val());
+    }, 'End must be greater than start');
 
-jQuery(function ($) {
-    
-
-	$('#addform').validate({
+    $('#addform').validate({
         rules: {
             tipo: {
                 required: true
@@ -26,11 +22,9 @@ jQuery(function ($) {
                 required: true
             },
             end: {
-                greaterThan: '#start'
+                gt: '#start'
             }
-
         },
-        
         highlight: function(element) {
             $(element).closest('.form-group').addClass('has-error');
         },
@@ -47,10 +41,12 @@ jQuery(function ($) {
             }
         }
     });
-});
 
-jQuery(function ($) {
-	$('#upform').validate({
+    $('[name="start"]').on('change blur keyup', function() {
+        $('[name="end"]').valid();
+    });
+
+    $('#upform').validate({
         rules: {
             nombreUp: {
                 required: true
@@ -65,7 +61,7 @@ jQuery(function ($) {
                 required: true
             },
             endUp: {
-                greaterThan: '#startUp'
+                gt: '#startUp'
             }
         },
         highlight: function(element) {
@@ -84,4 +80,9 @@ jQuery(function ($) {
             }
         }
     });
+
+    $('[name="startUp"]').on('change blur keyup', function() {
+        $('[name="endUp"]').valid();
+    });
+
 });

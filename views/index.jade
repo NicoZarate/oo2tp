@@ -4,6 +4,25 @@ extends layout
 
 block content
 
+    form#form0(action='', method='get')
+      | First name: 
+      input#fname(type='text', name='fname')
+      br
+      |   Last name: 
+      input#lname(type='text', name='lname')
+      br
+      input(type='submit', value='Submit')
+
+    form#form1(action='', method='get')
+      | First name: 
+      input#fname(type='text', name='fname')
+      br
+      |   Last name: 
+      input#lname(type='text', name='lname')
+      br
+      input(type='submit', value='Submit')
+
+
     #myModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
       .modal-dialog
         // Modal content
@@ -77,11 +96,11 @@ block content
 
                 .form-group
                     label(for='startUp') Seleccione el inicio del evento:
-                    input#startUp.form-control(type="number",name="start",value="", required, min="1")
+                    input#startUp.form-control(type="number",name="startUp",value="", required, min="1")
                 
                 .form-group
                     label(for='endUp') Seleccione el fin del evento:
-                    input#endUp.form-control(type="number",name="end",value="", required, min="1")
+                    input#endUp.form-control(type="number",name="endUp",value="", required, min="1")
 
 
                 .form-group
