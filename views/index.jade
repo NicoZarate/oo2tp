@@ -104,10 +104,16 @@ block content
         .container
                 h1 Event Timeline
                 p Click sobre la linea para agregar nuevos eventos
-    .container
-        .btn-group
-            button.btn.btn-primary(type="button", onclick='loadData()') ↓ Load
-            button.btn.btn-primary(type="button", onclick='saveData()') ↑ Save
+    .container.in-line
+
+        select#selectJson.selectpicker
+            option(value="") -- Select Json to Load --
+
+        button.btn.btn-primary(type="button", onclick='loadData()') ↓ Load
+
+        input#jsonName(type="text", name="jsonName",value="jsonName")
+
+        button.btn.btn-primary(type="button", onclick='saveData()') ↑ Save
         #visualization.top        
         #log
         .panel.panel-default.pany

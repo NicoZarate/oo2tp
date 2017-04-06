@@ -19,3 +19,7 @@ a {
 .botoncito{
 	margin-top: 25px;
 }
+
+.in-line > * {
+    margin:15px 3px !important;
+}
