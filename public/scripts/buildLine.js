@@ -1,13 +1,16 @@
-
-  var evalledData = traerJsonParaVis();
-  var items = new vis.DataSet(evalledData);
-  var global;
-
+var evalledData = traerJsonParaVis();
+var items = new vis.DataSet(evalledData);
+var global;
 
 
+// ------ inicio definición de la línea de tiempo ------
 
 
-  var container = document.getElementById('visualization');
+var container = document.getElementById('visualization');
+
+  // ------ inicio opciones y callbacks ------
+
+
   var options = {
     editable: true,
     min:0,
@@ -55,12 +58,10 @@
         });
        $('#myUpModal').modal('show');
        
-     
       
   },
    onMoving: function (item, callback) {
-     //no borrar
-   //para no movilizar olos eventos desde pantalla
+      //no borrar, hace que no se puedan mover los eventos
     
     },
 
@@ -75,18 +76,26 @@
       });
     }
   };
-  var timeline = new vis.Timeline(container, items, options);
 
-  items.on('*', function (event, properties) {
-    logEvent(event, properties);
-  });
+  // ------ fin opciones y callbacks ------
 
-  function logEvent(event, properties) {
-    var msg = document.createElement('div');
-    msg.innerHTML = 'event=' + JSON.stringify(event) + ', ' +
-        'properties=' + JSON.stringify(properties);
-    
-  }
+var timeline = new vis.Timeline(container, items, options);
+
+
+// ------ fin definición de la línea de tiempo ------
+
+// ------ inicio funciones para los callbacks ------
+
+items.on('*', function (event, properties) {
+  logEvent(event, properties);
+});
+
+function logEvent(event, properties) {
+  var msg = document.createElement('div');
+  msg.innerHTML = 'event=' + JSON.stringify(event) + ', ' +
+      'properties=' + JSON.stringify(properties);
+  
+}
 
   function prettyConfirm(title, text, callback) {
     swal({
@@ -107,6 +116,12 @@
       inputValue: inputValue
     }, callback);
   }
+
+
+  // ------ fin funciones para los callbacks ------
+
+  // ------ inicio funciones de manejo de JSON ------
+
    function loadData () {
     var evalledData = traerJsonParaVis();
     items.clear();
@@ -134,6 +149,7 @@
     });
     swal("Saved!", "You saved the timeline!", "success");
   }
+
   function reverseJsonForvis(myJsonVis){
       var str= '';
        $.each(myJsonVis, function(i, item) {
@@ -196,54 +212,8 @@
 
   }
 
-  //----------------------------------------end-----------------------------------
 
-
-  function getMilliseconds(aDate){
-      var str = JSON.stringify(aDate);
-      str = Number(str.slice(-5,-2));
-      return str;
-  }
-
-  //-------------------- SUPER SELECT DINAMICO  -----------------------------------
-
-
-function cambioselect(aType,tran1,tran2) {
- // alert(aType);
-    var x = document.getElementById(aType).value;
-    trans=traerTrans();
-
-    var json = JSON.parse(trans);
-
-
-    for (var key in json){
-
-      if (key==x){
-
-        var value = json[key].tran1;
-        var value2 = json[key].tran2;
-        console.log(key + ": " + value);
-        console.log(key + ": " + value2);
-
-        document.getElementById(tran1).options[0]=new Option(value,value);
-        document.getElementById(tran1).options[1]=new Option(value2,value2);
-
-
-        document.getElementById(tran2).options[0]=new Option(value,value);
-        document.getElementById(tran2).options[1]=new Option(value2,value2);
-
-
-
-      }
-        
-    }
-
-
-
-}
-
-
-function traerTrans(){
+  function traerTrans(){
        var jsonData = $.ajax({
           url: "./scripts/transitions.json",
           dataType: "json",
@@ -253,18 +223,7 @@ function traerTrans(){
 
  }
 
-
-function versiguardar() {
-
-            var nom = $("#nombre").val();
-            if (nom != "") {
-                guardar();
-            }
-
-    }
-
-
-   function guardar(){
+    function guardar(){
 
     var nombre = document.getElementById("nombre").value;
     var tipo = document.getElementById("tipo").value;
@@ -316,3 +275,47 @@ function versiguardar() {
    global = null;
     $('#myUpModal').modal('hide');
   }
+
+  function getMilliseconds(aDate){
+      var str = JSON.stringify(aDate);
+      str = Number(str.slice(-5,-2));
+      return str;
+  }
+
+// ------ fin funciones de manejo de JSON ------
+
+// ------ inicio select dinámico que actualiza transiciones cuando cambia el type ------
+  
+
+function cambioselect(aType,tran1,tran2) {
+
+    var x = document.getElementById(aType).value;
+    trans=traerTrans();
+
+    var json = JSON.parse(trans);
+
+
+    for (var key in json){
+
+      if (key==x){
+
+        var value = json[key].tran1;
+        var value2 = json[key].tran2;
+
+        document.getElementById(tran1).options[0]=new Option(value,value);
+        document.getElementById(tran1).options[1]=new Option(value2,value2);
+
+
+        document.getElementById(tran2).options[0]=new Option(value,value);
+        document.getElementById(tran2).options[1]=new Option(value2,value2);
+
+
+
+      }
+        
+    }
+
+
+}
+
+// ------ fin select dinámico que actualiza transiciones cuando cambia el type ------

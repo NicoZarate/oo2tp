@@ -2,19 +2,19 @@
 
 	"widget_video_list":{
 		"tran1":"blur",
-	    "tran2":"bunce2"
+	    "tran2":"bounce2"
 	},
 	"widget_video_list_2":{
 	    "tran1":"blur",
-	    "tran2":"bunce"
+	    "tran2":"bounce"
 	},
 	"WidgetLiveVideo":{
 	    "tran1":"blur",
-	    "tran2":"bunce"
+	    "tran2":"bounce"
 	},
 	"WidgetNetVideo":{
 	    "tran1":"blur",
-	    "tran2":"bunce"
+	    "tran2":"bounce"
 	},
 	"empty_column":{
 	    "tran1":"left",
@@ -22,15 +22,15 @@
 	},
 	"logo":{
 	    "tran1":"blur",
-	    "tran2":"bunce"
+	    "tran2":"bounce"
 	},
 	"twitter_user":{
 	    "tran1":"blur",
-	    "tran2":"bunce"
+	    "tran2":"bounce"
 	},
 	"w_news":{
 	    "tran1":"blur",
-	    "tran2":"bunce"
+	    "tran2":"bounce"
 	},
 	"fb":{
 	    "tran1":"blur",
