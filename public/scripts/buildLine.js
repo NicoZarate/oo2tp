@@ -132,6 +132,7 @@ function logEvent(event, properties) {
   }
 
   function saveData() {
+    var filename=document.getElementById("selectJson").value;
     var data = items.get({
       type: {
         start: 'ISODate',
@@ -143,7 +144,11 @@ function logEvent(event, properties) {
       type: 'POST',
       dataType: 'text',
       url: "http://localhost:3000/save",
-      data: data,
+      data: {
+        JsOn: data,
+        filename:filename
+      }
+      ,
       error: function(e) {
         console.log(e);
       }

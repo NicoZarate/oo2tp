@@ -31,8 +31,11 @@ router.get('/', function(req, res, next) {
 
 
 router.post('/save', function (request, response) { 
-	var strJson = convertRequestInJson(request.body);
-	fs.writeFile("./public/scripts/periodos.json",strJson , function(err) {
+	var strJson = convertRequestInJson(request.body.JsOn);
+  console.log(strJson);
+  var filename = "./public/periodos/"+ String(request.body.filename);
+  
+	fs.writeFile(filename,strJson , function(err) {
     if(err) {
         return console.log(err);
     }
@@ -44,10 +47,12 @@ router.post('/save', function (request, response) {
 
 
 function convertRequestInJson(aData){
+  //  console.log(aData);
     var json = '{';
   	aData = JSON.stringify(aData);
   	var str = aData.replace(/\\/g,'');
-  	str = str.slice(2,-5);
+    //console.log(str);
+  	str = str.slice(1,-1);
   	str = str.split(';');
   	for (var i = 0, len = str.length; i < len; i++) {
 		  json = json + '"prueba'+i+'":'+str[i]
