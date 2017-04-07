@@ -1,11 +1,29 @@
 var express = require('express');
 var router = express.Router();
 var fs = require('fs');
+var path = require("path");
 
 router.get('/', function(req, res, next) {
   fs.readFile('./public/model_widgets.json', 'utf8', function (err, data) {
         var tipos = JSON.parse(data);
-        res.render('index', { title : 'Main page', result : tipos });
+        
+        var archivos = [];
+        
+        var directorio = './public/periodos/';
+        fs.readdir(directorio, function (err, files) {
+          if (err) {
+              throw err;
+          }
+
+          files.forEach(function (file) {
+            var file1 = file
+            archivos.push(file1);
+          });
+          res.render('index', { title : 'Main page', types : tipos, archivos : archivos });
+          
+        });
+
+        
 
   });
     

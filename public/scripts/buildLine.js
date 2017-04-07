@@ -1,6 +1,7 @@
 var evalledData = traerJsonParaVis();
 var items = new vis.DataSet(evalledData);
-var global;
+// itemAux se necesita para el callback en el update y no perder el objeto
+var itemAux;
 
 
 // ------ inicio definición de la línea de tiempo ------
@@ -35,7 +36,7 @@ var container = document.getElementById('visualization');
     },
     
     onUpdate: function (item, callback) {
-         global=item;
+         itemAux=item;
          jQuery.noConflict();
          $('#myUpModal').on('show.bs.modal', function (e) {
               document.getElementById("tipoUp").value= item.widget_id;
@@ -261,18 +262,18 @@ function logEvent(event, properties) {
   }
 
   function changeItem(){
-    global.content = document.getElementById("nombreUp").value;
-    global.start = Number(document.getElementById("startUp").value);
-    global.end = Number(document.getElementById("endUp").value);
-    global.transition_in = document.getElementById("tran1Up").value;
-    global.transition_out = document.getElementById("tran2Up").value;
-    //alert(global.content);
-    items.update({id:global.id,end:global.end, 
-          start: global.start, 
-          content: global.content, 
-          transition_in: global.transition_in, 
-          transition_out: global.transition_out});
-   global = null;
+    itemAux.content = document.getElementById("nombreUp").value;
+    itemAux.start = Number(document.getElementById("startUp").value);
+    itemAux.end = Number(document.getElementById("endUp").value);
+    itemAux.transition_in = document.getElementById("tran1Up").value;
+    itemAux.transition_out = document.getElementById("tran2Up").value;
+    //alert(itemAux.content);
+    items.update({id:itemAux.id,end:itemAux.end, 
+          start: itemAux.start, 
+          content: itemAux.content, 
+          transition_in: itemAux.transition_in, 
+          transition_out: itemAux.transition_out});
+   itemAux = null;
     $('#myUpModal').modal('hide');
   }
 

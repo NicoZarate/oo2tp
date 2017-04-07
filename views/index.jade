@@ -19,7 +19,7 @@ block content
                     label(for='tipo') Tipo del evento:
                     select#tipo.form-control(onchange='cambioselect("tipo","tran1","tran2")', required)
                         option(value="") -- Select Type --
-                        each value, key in result
+                        each value, key in types
                             option(value="#{key}") #{key}
 
 
@@ -108,6 +108,8 @@ block content
 
         select#selectJson.selectpicker
             option(value="") -- Select Json to Load --
+                for item in archivos
+                    option #{item}
 
         button.btn.btn-primary(type="button", onclick='loadData()') ↓ Load
 
