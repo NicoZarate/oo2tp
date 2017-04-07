@@ -121,7 +121,7 @@ function logEvent(event, properties) {
 
   // ------ fin funciones para los callbacks ------
 
-  // ------ inicio funciones de manejo de JSON ------
+  // ------ inicio funciones de carga y guardado de JSON ------
 
    function loadData () {
     var evalledData = traerJsonParaVis();
@@ -156,6 +156,15 @@ function logEvent(event, properties) {
     swal("Saved!", "You saved the timeline!", "success");
   }
 
+$('#selectJson').on('change', function() {
+  document.getElementById('jsonName').value = this.value;
+})
+
+// ------ fin funciones de manejo de JSON ------
+
+
+//---------------------estas funciones trae y convierte a json en un formato entendible para vis ---
+
   function reverseJsonForvis(myJsonVis){
       var str= '';
        $.each(myJsonVis, function(i, item) {
@@ -175,7 +184,7 @@ function logEvent(event, properties) {
        return str;
   }
 
-  //---------------------estas funciones trae y convierte a json en un formato entendible para vis ---
+
    function traerJsonParaVis(){
        var filename=document.getElementById("selectJson").value;
        filename="./periodos/"+String(filename);
@@ -328,6 +337,3 @@ function cambioselect(aType,tran1,tran2) {
 
 // ------ fin select dinámico que actualiza transiciones cuando cambia el type ------
 
-$('#selectJson').on('change', function() {
-  document.getElementById('jsonName').value = this.value;
-})
