@@ -1,5 +1,5 @@
-var evalledData = traerJsonParaVis();
-var items = new vis.DataSet(evalledData);
+//var evalledData = traerJsonParaVis();
+var items = new vis.DataSet();
 // itemAux se necesita para el callback en el update y no perder el objeto
 var itemAux;
 
@@ -172,8 +172,10 @@ function logEvent(event, properties) {
 
   //---------------------estas funciones trae y convierte a json en un formato entendible para vis ---
    function traerJsonParaVis(){
+       var filename=document.getElementById("selectJson").value;
+       filename="./periodos/"+String(filename);
        var jsonData = $.ajax({
-          url: "./scripts/periodos.json",
+          url: filename,
           dataType: "json",
           async: false
           }).responseText;

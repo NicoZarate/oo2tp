@@ -1,1 +1,46 @@
-{"prueba0":{"start":15,"end":20,"widget_id":"widget_video_list","transition_in":"bounce2","transition_out":"blur","content":"olasoiunevento"}}
+{
+
+    "ticker":{
+      "start":27,
+      "end":36,
+      "widget_id":"ticker",
+      "transition_in":"down",
+      "transition_out":"down"
+    },
+    "ticker_feather":{
+      "start":27,
+      "end":36,
+      "widget_id":"WidgetTickerFeather",
+      "transition_in":"down",
+      "transition_out":"down"
+    },
+    "ticker_bkg":{
+      "start":27,
+      "end":36,
+      "widget_id":"WidgetTickerBackground",
+      "transition_in":"down",
+      "transition_out":"down"
+    },
+    "ticker_icon":{
+      "start":27,
+      "end":36,
+      "widget_id":"WidgetTickerIcon",
+      "transition_in":"down",
+      "transition_out":"down"
+    },
+
+    "period_background":{
+      "start":63,
+      "end":72,
+      "widget_id":"empty_column",
+      "transition_in":"right",
+      "transition_out":"right"
+    },
+    "facebook":{
+      "start":63,
+      "end":72,
+      "widget_id":"fb",
+      "transition_in":"up",
+      "transition_out":"right"
+    }
+    }
