@@ -327,3 +327,7 @@ function cambioselect(aType,tran1,tran2) {
 }
 
 // ------ fin select dinámico que actualiza transiciones cuando cambia el type ------
+
+$('#selectJson').on('change', function() {
+  document.getElementById('jsonName').value = this.value;
+})
