@@ -15,6 +15,11 @@ var container = document.getElementById('visualization');
   var options = {
     editable: true,
     min:0,
+//    min: 4102455600000,                // lower limit of visible range 01/1/2100 0:00:00
+//    max: 4102541999000,                // upper limit of visible range 01/1/2100 23:59:59
+//    zoomMax: 1000 * 60 * 60 * 24,     // about one day in milliseconds
+
+
     minHeight:"250px",
     showMajorLabels:false,
 
@@ -132,7 +137,7 @@ function logEvent(event, properties) {
   }
 
   function saveData() {
-    var filename=document.getElementById("selectJson").value;
+    var filename=document.getElementById("jsonName").value + '.json';
     var data = items.get({
       type: {
         start: 'ISODate',
@@ -186,7 +191,7 @@ $('#selectJson').on('change', function() {
 
 
    function traerJsonParaVis(){
-       var filename=document.getElementById("selectJson").value;
+       var filename=document.getElementById("selectJson").value + '.json';
        filename="./periodos/"+String(filename);
        var jsonData = $.ajax({
           url: filename,

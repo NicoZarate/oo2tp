@@ -16,7 +16,7 @@ router.get('/', function(req, res, next) {
           }
 
           files.forEach(function (file) {
-            var file1 = file
+            var file1 = path.basename(file, '.json');
             archivos.push(file1);
           });
           res.render('index', { title : 'Main page', types : tipos, archivos : archivos });
@@ -32,7 +32,8 @@ router.get('/', function(req, res, next) {
 
 router.post('/save', function (request, response) { 
 	var strJson = convertRequestInJson(request.body.JsOn);
-  console.log(strJson);
+  //console.log(strJson);
+  console.log(String(request.body.filename));
   var filename = "./public/periodos/"+ String(request.body.filename);
   
 	fs.writeFile(filename,strJson , function(err) {
