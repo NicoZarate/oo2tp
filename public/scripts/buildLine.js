@@ -149,13 +149,38 @@ function logEvent(event, properties) {
     
     
     if (select=='' & filename!='') {
-
-
-      //crearNuevo
-
+    //crearNuevo
+      filename=filename + '.json';
+      mensajeAlServer(filename);
       
-      var filename=filename + '.json';
+    }
+    else{
+      if (filename!=''){
+        //actualizar;
 
+        filename=filename + '.json';
+        oldfilename=select + '.json';
+
+        //si son iguales no actualizo el nombre
+
+        if (filename==oldfilename){
+
+           mensajeAlServer(filename);
+
+        }
+        else{
+        //modificar
+         mensajeAlServer(filename,oldfilename);
+        }
+
+      }
+     }
+   }
+
+$('#selectJson').on('change', function() {
+  document.getElementById('jsonName').value = this.value;
+})
+function mensajeAlServer(filename,oldfilename){
       var data = items.get({
       type: {
         start: 'ISODate',
@@ -163,6 +188,8 @@ function logEvent(event, properties) {
       }
       });
       data = reverseJsonForvis(data);
+     if(oldfilename==undefined){
+
       $.ajax({
         type: 'POST',
         dataType: 'text',
@@ -176,52 +203,9 @@ function logEvent(event, properties) {
           console.log(e);
         }
       });
-      swal("Saved!", "You saved the timeline!", "success");
-      
-    }
-    else{
-      if (filename!=''){
-        //actualizar;
+     
 
-        var filename=filename + '.json';
-        var oldfilename=select + '.json';
-
-        //si son iguales no actualizo el nombre
-
-        if (filename==oldfilename){
-
-          var data = items.get({
-          type: {
-            start: 'ISODate',
-            end: 'ISODate'
-          }
-          });
-          data = reverseJsonForvis(data);
-          $.ajax({
-            type: 'POST',
-            dataType: 'text',
-            url: "http://localhost:3000/save",
-            data: {
-              JsOn: data,
-              filename:filename
-            }
-            ,
-            error: function(e) {
-              console.log(e);
-            }
-          });
-          swal("Saved!", "You saved the timeline!", "success");
-
-        }
-        else{
-
-        var data = items.get({
-        type: {
-          start: 'ISODate',
-          end: 'ISODate'
-        }
-        });
-        data = reverseJsonForvis(data);
+     }else{
         $.ajax({
           type: 'POST',
           dataType: 'text',
@@ -236,21 +220,10 @@ function logEvent(event, properties) {
             console.log(e);
           }
         });
-        swal("Saved!", "You saved the timeline!", "success");
-      }
 
-    }
-
-    
-    
+     }
+    swal("Saved!", "You saved the timeline!", "success");
   }
-
-  }
-
-$('#selectJson').on('change', function() {
-  document.getElementById('jsonName').value = this.value;
-})
-
 // ------ fin funciones de manejo de JSON ------
 
 
