@@ -4,10 +4,7 @@ var fs = require('fs');
 var path = require("path");
 
 router.get('/', function(req, res, next) {
-  fs.readFile('./public/model_widgets.json', 'utf8', function (err, data) {
-        
-         modificarSelect(res,data);
-  });
+  renderizarIndex(res);
     
 });
 
@@ -23,27 +20,17 @@ router.post('/save', function (request, response) {
     }
    
     console.log("The file was saved!");
+    renderizarIndex(response);
 });
      //modificarSelect(response);
+
 });
 
 router.post('/update', function (request, response) { 
 
 
-  //ACA DEBERIA RENOMBRAR EL ARCHIVO CON EL NOMBRE NUEVO
-  //Y SOBREESCRIBIR LOS DATOS DE ADENTRO PORKE PUDO HABER CAMBIADO
-
-
-  // EL RENAME ME TIRA ERROR EN LA CONSOLA (CONSOLA POSTA NO LA DEL NAVEGADOR)
-
-  //{ [Error: ENOENT, rename './public/periodos/gdgsdf'] errno: 34, code: 'ENOENT', path: './public/periodos/gdgsdf' }
-
-  //manejate ;D  
-
   var strJson = convertRequestInJson(request.body.JsOn);
-  //var oldfilename = String(request.body.oldfilename);
-  //console.log(strJson);
-  console.log(String(request.body.filename));
+
   var oldfilename = "./public/periodos/"+ String(request.body.oldfilename);
   var filename = "./public/periodos/"+ String(request.body.filename);
 
@@ -53,32 +40,39 @@ router.post('/update', function (request, response) {
     }
     
     console.log("The file was saved!");
-});
+    renderizarIndex(response);
+  });
+
+  
     //modificarSelect(response);
 });
-function modificarSelect(res,data){
-  var archivos = [];
-  var directorio = './public/periodos/';
-  
-  fs.readdir(directorio, function (err, files) {
-          if (err) {
-              throw err;
-          }
 
-          files.forEach(function (file) {
-            var file1 = path.basename(file, '.json');
-            archivos.push(file1);
-          });
-          if(data != undefined){
-              var tipos = JSON.parse(data);
-              res.render('index', { title : 'Main page', types : tipos, archivos : archivos });
-            }else{
-              res.render('index', { archivos : archivos });
+
+function renderizarIndex(res){
+
+  fs.readFile('./public/model_widgets.json', 'utf8', function (err, data) {
+
+    var archivos = [];
+    var directorio = './public/periodos/';
+    
+    fs.readdir(directorio, function (err, files) {
+            if (err) {
+                throw err;
             }
-            console.log(archivos);
-        });
 
+            files.forEach(function (file) {
+              var file1 = path.basename(file, '.json');
+              archivos.push(file1);
+            });
+          
+                var tipos = JSON.parse(data);
+                res.render('index', { title : 'Main page', types : tipos, archivos : archivos });
+          });
+          
+    });
+    
 }
+
 
 function convertRequestInJson(aData){
   //  console.log(aData);

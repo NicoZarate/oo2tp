@@ -199,6 +199,7 @@ function mensajeAlServer(filename,oldfilename){
           filename:filename
         }
         ,
+        success: function () { window.location.href = "/"; },
         error: function(e) {
           console.log(e);
         }
@@ -216,6 +217,7 @@ function mensajeAlServer(filename,oldfilename){
             filename:filename
           }
           ,
+          success: function () { window.location.href = "/"; },
           error: function(e) {
             console.log(e);
           }
