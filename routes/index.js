@@ -89,12 +89,14 @@ function convertRequestInJson(aData){
     //console.log(str);
   	str = str.slice(1,-1);
   	str = str.split(';');
+    if(str[0]!=''){
   	for (var i = 0, len = str.length; i < len; i++) {
 		  json = json + '"prueba'+i+'":'+str[i]
 		if(i < len-1){
 		  json = json +',';
-		} 
-	} 
+		 } 
+	  } 
+  }
     return json + '}';
 }
 
