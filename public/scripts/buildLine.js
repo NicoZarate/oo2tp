@@ -129,36 +129,122 @@ function logEvent(event, properties) {
   // ------ inicio funciones de carga y guardado de JSON ------
 
    function loadData () {
-    var evalledData = traerJsonParaVis();
-    items.clear();
-    items.add(evalledData);
-    timeline.fit();
-    swal("Loaded!", "You loaded the timeline!", "success");
+    
+    var select=document.getElementById("selectJson").value;
+    
+    if (select!=''){
+      var evalledData = traerJsonParaVis();
+      items.clear();
+      items.add(evalledData);
+      timeline.fit();
+      swal("Loaded!", "You loaded the timeline!", "success");
+
+    }
+    
   }
 
   function saveData() {
-    var filename=document.getElementById("jsonName").value + '.json';
-    var data = items.get({
+    var select=document.getElementById("selectJson").value;
+    var filename=document.getElementById("jsonName").value;
+    
+    
+    if (select=='' & filename!='') {
+
+
+      //crearNuevo
+
+      
+      var filename=filename + '.json';
+
+      var data = items.get({
       type: {
         start: 'ISODate',
         end: 'ISODate'
       }
-    });
-    data = reverseJsonForvis(data);
-    $.ajax({
-      type: 'POST',
-      dataType: 'text',
-      url: "http://localhost:3000/save",
-      data: {
-        JsOn: data,
-        filename:filename
+      });
+      data = reverseJsonForvis(data);
+      $.ajax({
+        type: 'POST',
+        dataType: 'text',
+        url: "http://localhost:3000/save",
+        data: {
+          JsOn: data,
+          filename:filename
+        }
+        ,
+        error: function(e) {
+          console.log(e);
+        }
+      });
+      swal("Saved!", "You saved the timeline!", "success");
+      
+    }
+    else{
+      if (filename!=''){
+        //actualizar;
+
+        var filename=filename + '.json';
+        var oldfilename=select + '.json';
+
+        //si son iguales no actualizo el nombre
+
+        if (filename==oldfilename){
+
+          var data = items.get({
+          type: {
+            start: 'ISODate',
+            end: 'ISODate'
+          }
+          });
+          data = reverseJsonForvis(data);
+          $.ajax({
+            type: 'POST',
+            dataType: 'text',
+            url: "http://localhost:3000/save",
+            data: {
+              JsOn: data,
+              filename:filename
+            }
+            ,
+            error: function(e) {
+              console.log(e);
+            }
+          });
+          swal("Saved!", "You saved the timeline!", "success");
+
+        }
+        else{
+
+        var data = items.get({
+        type: {
+          start: 'ISODate',
+          end: 'ISODate'
+        }
+        });
+        data = reverseJsonForvis(data);
+        $.ajax({
+          type: 'POST',
+          dataType: 'text',
+          url: "http://localhost:3000/update",
+          data: {
+            JsOn: data,
+            oldfilename:oldfilename,
+            filename:filename
+          }
+          ,
+          error: function(e) {
+            console.log(e);
+          }
+        });
+        swal("Saved!", "You saved the timeline!", "success");
       }
-      ,
-      error: function(e) {
-        console.log(e);
-      }
-    });
-    swal("Saved!", "You saved the timeline!", "success");
+
+    }
+
+    
+    
+  }
+
   }
 
 $('#selectJson').on('change', function() {

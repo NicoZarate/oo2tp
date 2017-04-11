@@ -46,6 +46,36 @@ router.post('/save', function (request, response) {
 
 });
 
+router.post('/update', function (request, response) { 
+
+
+  //ACA DEBERIA RENOMBRAR EL ARCHIVO CON EL NOMBRE NUEVO
+  //Y SOBREESCRIBIR LOS DATOS DE ADENTRO PORKE PUDO HABER CAMBIADO
+
+
+  // EL RENAME ME TIRA ERROR EN LA CONSOLA (CONSOLA POSTA NO LA DEL NAVEGADOR)
+
+  //{ [Error: ENOENT, rename './public/periodos/gdgsdf'] errno: 34, code: 'ENOENT', path: './public/periodos/gdgsdf' }
+
+  //manejate ;D  
+
+  var strJson = convertRequestInJson(request.body.JsOn);
+  //var oldfilename = String(request.body.oldfilename);
+  //console.log(strJson);
+  console.log(String(request.body.filename));
+  var oldfilename = "./public/periodos/"+ String(request.body.oldfilename);
+  var filename = "./public/periodos/"+ String(request.body.filename);
+
+  fs.rename(oldfilename, filename, function(err){
+    if(err) {
+        return console.log(err);
+    }
+
+    console.log("The file was saved!");
+});
+
+});
+
 
 function convertRequestInJson(aData){
   //  console.log(aData);
