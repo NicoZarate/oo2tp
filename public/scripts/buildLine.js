@@ -13,11 +13,27 @@ var container = document.getElementById('visualization');
 
 
   var options = {
+   timeAxis: {scale: 'millisecond', step: 1},
     editable: true,
-    min:0,
-//    min: 4102455600000,                // lower limit of visible range 01/1/2100 0:00:00
-//    max: 4102541999000,                // upper limit of visible range 01/1/2100 23:59:59
-//    zoomMax: 1000 * 60 * 60 * 24,     // about one day in milliseconds
+    //esto es para que convierta las fechas en milisegundos y se vea 0 1 2 3..
+    start: new Date(0),
+    end: new Date(1),
+    min: new Date(0),
+    format: {
+      minorLabels: function(date, scale, step) {
+        switch (scale) {
+          case 'millisecond':
+            return new Date(date).getTime();
+          case 'second':
+            var seconds = Math.round(new Date(date).getTime() / 1000);
+            return seconds;
+          case 'minute':
+            var minutes = Math.round(new Date(date).getTime() / 1000 * 60);
+            return minutes;
+         //............................ and so on ..........................
+      }
+    }
+  },
 
 
     minHeight:"250px",
@@ -86,6 +102,10 @@ var container = document.getElementById('visualization');
   // ------ fin opciones y callbacks ------
 
 var timeline = new vis.Timeline(container, items, options);
+
+//este fit hace que el 0 este al principio y no en el medio
+
+timeline.fit();
 
 
 // ------ fin definición de la línea de tiempo ------
