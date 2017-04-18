@@ -1,1 +1,10 @@
-{"prueba0":{"start":15,"end":20,"widget_id":"widget_video_list","transition_in":"bounce2","transition_out":"blur","content":"olasoiunevento"},"prueba1":{"start":1,"end":5,"widget_id":"WidgetLiveVideo","transition_in":"blur","transition_out":"blur","content":"vvaaa"},"prueba2":{"start":2,"end":5,"widget_id":"widget_video_list","transition_in":"blur","transition_out":"blur","content":"haha"}}
+{
+    "prueba0": {
+        "start": 15,
+        "end": 20,
+        "widget_id": "widget_video_list",
+        "transition_in": "bounce2",
+        "transition_out": "blur",
+        "content": "olasoiunevento"
+    }
+}

@@ -12,8 +12,8 @@ router.get('/', function(req, res, next) {
 router.post('/save', function (request, response) { 
 	var strJson = convertRequestInJson(request.body.JsOn);
   var filename = "./public/periodos/"+ String(request.body.filename);
-  
-	fs.writeFile(filename, strJson, function(err) {
+  strJson = JSON.parse(strJson);
+	fs.writeFile(filename,JSON.stringify(strJson,null,4), function(err) {
     if(err) {
         return console.log(err);
     }

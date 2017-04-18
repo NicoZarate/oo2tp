@@ -1,0 +1,18 @@
+{
+    "prueba0": {
+        "start": 11,
+        "end": 16,
+        "widget_id": "widget_video_list",
+        "transition_in": "blur",
+        "transition_out": "blur",
+        "content": "pepe"
+    },
+    "prueba1": {
+        "start": 12,
+        "end": 15,
+        "widget_id": "WidgetLiveVideo",
+        "transition_in": "blur",
+        "transition_out": "blur",
+        "content": "m"
+    }
+}
