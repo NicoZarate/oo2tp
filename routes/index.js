@@ -11,10 +11,9 @@ router.get('/', function(req, res, next) {
 
 router.post('/save', function (request, response) { 
 	var strJson = convertRequestInJson(request.body.JsOn);
-  console.log(String(request.body.filename));
   var filename = "./public/periodos/"+ String(request.body.filename);
   
-	fs.writeFile(filename,strJson , function(err) {
+	fs.writeFile(filename, strJson, function(err) {
     if(err) {
         return console.log(err);
     }
@@ -50,7 +49,7 @@ router.post('/update', function (request, response) {
 
 function renderizarIndex(res){
 
-  fs.readFile('./public/model_widgets.json', 'utf8', function (err, data) {
+  fs.readFile('./public/sysfiles/model_widgets.json', 'utf8', function (err, data) {
 
     var archivos = [];
     var directorio = './public/periodos/';

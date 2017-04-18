@@ -200,6 +200,7 @@ function logEvent(event, properties) {
 $('#selectJson').on('change', function() {
   document.getElementById('jsonName').value = this.value;
 })
+
 function mensajeAlServer(filename,oldfilename){
       var data = items.get({
       type: {
@@ -318,7 +319,7 @@ function mensajeAlServer(filename,oldfilename){
 
   function traerTrans(){
        var jsonData = $.ajax({
-          url: "./scripts/transitions.json",
+          url: "./sysfiles/transitions.json",
           dataType: "json",
           async: false
           }).responseText;
