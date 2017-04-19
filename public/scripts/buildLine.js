@@ -247,10 +247,10 @@ function mensajeAlServer(filename,oldfilename){
      }
     swal("Saved!", "You saved the timeline!", "success");
   }
-// ------ fin funciones de manejo de JSON ------
+// ------ fin funciones de carga y guardado de JSON ------
 
 
-//---------------------estas funciones trae y convierte a json en un formato entendible para vis ---
+//------- inicio conversión y manejo de json ------
 
   function reverseJsonForvis(myJsonVis){
       var str= '';
@@ -317,6 +317,10 @@ function mensajeAlServer(filename,oldfilename){
   }
 
 
+//------- fin conversión y manejo de json ------
+
+//------- trae el json de las transiciones según el tipo seleccionado ------
+
   function traerTrans(){
        var jsonData = $.ajax({
           url: "./sysfiles/transitions.json",
@@ -325,32 +329,34 @@ function mensajeAlServer(filename,oldfilename){
           }).responseText;
       return jsonData;
 
- }
+  }
 
-    function guardar(){
+  //------- inicio manipulación de items de la línea de tiempo ------
 
-    var nombre = document.getElementById("nombre").value;
-    var tipo = document.getElementById("tipo").value;
-    var start = Number(document.getElementById("start").value);
-    var end = Number(document.getElementById("end").value);
-    var tran1 = document.getElementById("tran1").value;
-    var tran2 = document.getElementById("tran2").value;
+  function guardar(){
 
-    var ejemplo = {
-       "start":start,
-       "end":end,
-       "widget_id": tipo,
-       "transition_in": tran1,
-       "transition_out": tran2,
-       "content": nombre
-     };
+  var nombre = document.getElementById("nombre").value;
+  var tipo = document.getElementById("tipo").value;
+  var start = Number(document.getElementById("start").value);
+  var end = Number(document.getElementById("end").value);
+  var tran1 = document.getElementById("tran1").value;
+  var tran2 = document.getElementById("tran2").value;
 
-     var data = items.get({
-      type: {
-        start: 'ISODate',
-        end: 'ISODate'
-      }
-    });
+  var ejemplo = {
+     "start":start,
+     "end":end,
+     "widget_id": tipo,
+     "transition_in": tran1,
+     "transition_out": tran2,
+     "content": nombre
+   };
+
+   var data = items.get({
+    type: {
+      start: 'ISODate',
+      end: 'ISODate'
+    }
+  });
 
 
      data.push(ejemplo);
@@ -380,13 +386,19 @@ function mensajeAlServer(filename,oldfilename){
     $('#myUpModal').modal('hide');
   }
 
+
+//------- inicio manipulación de items de la línea de tiempo ------
+
+
+//------- redefinición de función para portabilidad de navegadores ------
+
+
   function getMilliseconds(aDate){
       var str = JSON.stringify(aDate);
       str = Number(str.slice(-5,-2));
       return str;
   }
 
-// ------ fin funciones de manejo de JSON ------
 
 // ------ inicio select dinámico que actualiza transiciones cuando cambia el type ------
   

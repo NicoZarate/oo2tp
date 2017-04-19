@@ -21,7 +21,6 @@ router.post('/save', function (request, response) {
     console.log("The file was saved!");
     renderizarIndex(response);
 });
-     //modificarSelect(response);
 
 });
 
@@ -42,8 +41,6 @@ router.post('/update', function (request, response) {
     renderizarIndex(response);
   });
 
-  
-    //modificarSelect(response);
 });
 
 
@@ -72,14 +69,13 @@ function renderizarIndex(res){
     
 }
 
+//----- convie
 
 function convertRequestInJson(aData){
-  //  console.log(aData);
-  //fijarme que si no hay items que guarde solo un json vacio 
+ 
     var json = '{';
   	aData = JSON.stringify(aData);
   	var str = aData.replace(/\\/g,'');
-    //console.log(str);
   	str = str.slice(1,-1);
   	str = str.split(';');
     if(str[0]!=''){
@@ -92,10 +88,6 @@ function convertRequestInJson(aData){
   }
     return json + '}';
 }
-
-
-
-
 
 
 module.exports = router;
