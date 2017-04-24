@@ -113,7 +113,7 @@ block content
 
         button.btn.btn-primary(type="button", onclick='loadData()') ↓ Load
 
-        input#jsonName(type="text", name="jsonName",value="")
+        input#jsonName(type="text", name="jsonName",value="", placeholder="nombre del archivo")
 
         button.btn.btn-primary(type="button", onclick='saveData()') ↑ Save
         #visualization.top        
@@ -121,6 +121,8 @@ block content
         .panel.panel-default.pany
             .panel-heading Mini Tips
             .panel-body
-                p Para guardar los eventos, presione Save
-                p Para cargar los eventos guardados, presione Load
+                p Seleccione el archivo que desea cargar y presione Load
+                p Para guardar los cambios realizados, presione Save
+                p Renombre sus archivos seleccionándolo y modificando el campo "nombre del archivo", luego presione Save
+                p Si no se selecciona ningún archivo, escribe un nombre y presiona Save, se creará uno nuevo con el nombre especificado
         script(src='scripts/buildLine.js') 

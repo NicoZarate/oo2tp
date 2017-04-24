@@ -1,0 +1,10 @@
+{
+    "prueba0": {
+        "start": 1,
+        "end": 7,
+        "widget_id": "empty_column",
+        "transition_in": "right",
+        "transition_out": "left",
+        "content": "evento1"
+    }
+}

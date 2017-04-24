@@ -13,6 +13,6 @@
         "widget_id": "WidgetLiveVideo",
         "transition_in": "blur",
         "transition_out": "blur",
-        "content": "m"
+        "content": "aaa"
     }
 }
